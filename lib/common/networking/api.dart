@@ -54,7 +54,7 @@ class _Api extends GetConnect {
     httpClient.baseUrl = "MyConfig.BASE_URL";
 
     String pf = Platform.operatingSystem;
-    httpClient.addRequestModifier((request) {
+/*    httpClient.addRequestModifier((request) {
       request.headers['platform'] = pf;
       if (_withToken) {
         String token = box.read("MyConfig.TOKEN_STRING_KEY");
@@ -62,7 +62,7 @@ class _Api extends GetConnect {
       }
       _showLogWhenDebug("HEADERS", request.headers.toString());
       return request;
-    });
+    });*/
     super.onInit();
   }
 
@@ -76,7 +76,7 @@ class _Api extends GetConnect {
     _withToken = withToken;
 
     _showLogWhenDebug(method == Method.GET ? "GET" : "POST",
-        httpClient.baseUrl + API_NAME + endPoint);
+        httpClient.baseUrl! + API_NAME + endPoint);
     _showLogWhenDebug("PARAMS", query.toString());
     _showLogWhenDebug("TOKEN", _withToken.toString());
     try {
@@ -116,19 +116,19 @@ class _Api extends GetConnect {
       bool withToken = false}) async {
     _withToken = withToken;
 
-    _showLogWhenDebug("GET", httpClient.baseUrl + API_NAME + endPoint);
+    _showLogWhenDebug("GET", httpClient.baseUrl! + API_NAME + endPoint);
     _showLogWhenDebug("PARAMS", query.toString());
     _showLogWhenDebug("TOKEN", _withToken.toString());
     try {
       var res = await get(API_NAME + endPoint, query: query);
       if (res.isOk) {
-        _showLogWhenDebug("LOADED", res.bodyString);
-        _result = Result.fromJson(res.bodyString);
+        _showLogWhenDebug("LOADED", res.bodyString!);
+        _result = Result.fromJson(res.bodyString!);
         _result.body = res.body;
         _showLogWhenDebug("PARSING", "SUCCESS");
         return _result;
       } else {
-        _showLogWhenDebug("ERROR 0", res.bodyString);
+        _showLogWhenDebug("ERROR 0", res.bodyString!);
         _result.status = true;
         _result.isError = true;
         _result.text = "Terjadi kesalahan, coba beberapa saat lagi...";
@@ -150,19 +150,19 @@ class _Api extends GetConnect {
       bool withToken = false}) async {
     _withToken = withToken;
 
-    _showLogWhenDebug("POST", httpClient.baseUrl + API_NAME + endPoint);
+    _showLogWhenDebug("POST", httpClient.baseUrl! + API_NAME + endPoint);
     _showLogWhenDebug("PARAMS", data.toString());
     _showLogWhenDebug("TOKEN", _withToken.toString());
     try {
       var res = await httpClient.post(API_NAME + endPoint, body: data);
       if (res.isOk) {
-        _showLogWhenDebug("LOADED", res.bodyString);
-        _result = Result.fromJson(res.bodyString);
+        _showLogWhenDebug("LOADED", res.bodyString!);
+        _result = Result.fromJson(res.bodyString!);
         _result.body = res.body;
         _showLogWhenDebug("PARSING", "SUCCESS");
         return _result;
       } else {
-        _showLogWhenDebug("ERROR 0", res.bodyString);
+        _showLogWhenDebug("ERROR 0", res.bodyString!);
         _result.status = true;
         _result.isError = true;
         _result.text = "Terjadi kesalahan, coba beberapa saat lagi...";
