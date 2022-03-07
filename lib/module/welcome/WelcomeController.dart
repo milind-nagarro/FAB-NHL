@@ -2,9 +2,13 @@ import 'dart:ui';
 
 import 'package:fab_nhl/route/RoutePaths.dart' as path;
 import 'package:get/get.dart';
+import 'package:fab_nhl/utilities/constants.dart';
 
 class WelcomeController extends GetxController {
-  String selectedLanguage = "Arabic";
+  String selectedLanguage = "ةيبرعلا";
+  final currentPage = 0.obs;
+  static final String title = titles.first;
+  final welcomeMessage = title.obs;
 
   void navigateToLogin() {}
 
@@ -13,12 +17,17 @@ class WelcomeController extends GetxController {
   }
 
   void changeLanguage() {
-    if (selectedLanguage == "Arabic") {
+    if (selectedLanguage == "ةيبرعلا") {
       Get.updateLocale(const Locale('ar'));
       selectedLanguage = "English";
     } else {
       Get.updateLocale(const Locale('en_US'));
-      selectedLanguage = "Arabic";
+      selectedLanguage = "ةيبرعلا";
     }
+  }
+
+  void setPage(int pageNum) {
+    currentPage(pageNum);
+    welcomeMessage(titles[pageNum]);
   }
 }
