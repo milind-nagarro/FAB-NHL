@@ -30,13 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # UTILITIES
-  device_info: ^1.0.0
-  url_launcher: ^5.7.10
-
   # GETX STATE MANAGEMENT
-  get: ^3.24.0
-  get_storage: ^1.4.0
+  get: ^4.6.1
+  get_storage: ^2.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -45,6 +41,7 @@ dependencies:
 
   google_fonts:
   flutter_screenutil:
+  plugin_platform_interface: ^2.1.2
 
 dev_dependencies:
   flutter_test:
