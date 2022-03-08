@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get/route_manager.dart';
 
 import 'RegisterMobileController.dart';
 
@@ -62,9 +63,14 @@ class RegisterMobile extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: TextButton(
-                      style: blueButtonStyle,
-                      onPressed: () => {},
-                      child: Text('next'.tr)),
+                      style: appBtnStyle(color.primaryLabelColor),
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text(
+                        'next'.tr,
+                        style: btnTitleStyle(Colors.white),
+                      )),
                 ),
               ),
             ),

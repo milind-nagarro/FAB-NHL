@@ -109,6 +109,7 @@ flutter:
     - family: Graphik
       fonts:
         - asset: fonts/GraphikRegular.otf
+        - asset: fonts/GraphikSemibold.otf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf

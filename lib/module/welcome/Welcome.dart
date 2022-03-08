@@ -1,44 +1,13 @@
 import 'dart:ui';
 
+import 'package:fab_nhl/common/AppColor.dart';
+import 'package:fab_nhl/common/Style.dart';
+import 'package:fab_nhl/common/utilities/app_constants.dart';
 import 'package:fab_nhl/module/welcome/WelcomeController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:fab_nhl/utilities/page_indicator.dart';
-import 'package:fab_nhl/utilities/constants.dart';
-
-// class Welcome extends StatelessWidget {
-//   const Welcome({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final WelcomeController controller = Get.find();
-// // Instantiate your class using Get.put() to make it available for all "child" routes there.
-//     return Scaffold(
-//       // Replace the 8 lines Navigator.push by a simple Get.to(). You don't need context
-//       body: Center(
-//           child: Column(
-//         mainAxisSize: MainAxisSize.min,
-//         children: [
-//           GestureDetector(
-//               child: Text(
-//                 controller.selectedLanguage,
-//                 style: TextStyle(fontSize: 25),
-//               ),
-//               onTap: controller.changeLanguage),
-//           ElevatedButton(
-//               child: Text('login'.tr),
-//               onPressed: () => controller.navigateToLogin()),
-//           Container(
-//             margin: const EdgeInsets.only(top: 10),
-//             child: ElevatedButton(
-//                 child: Text('register'.tr),
-//                 onPressed: () => controller.navigateToRegister()),
-//           ),
-//         ],
-//       )),
-//     );
-//   }
-// }
+import 'package:fab_nhl/common/utilities/page_indicator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -47,125 +16,92 @@ class Welcome extends StatelessWidget {
   Widget build(BuildContext context) {
     // bottom buttons login register
     final WelcomeController controller = Get.find();
+    const btnWidth = 312.0;
+    const btnHeight = 56.0;
+    final bottomSpace = 90.h;
+    final topSpace = 80.h;
+    final leadingTrailingSpace = 32.w;
+
     Widget bottomButtons = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        // button sizes are proportional to screen width
-        LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-          final width = constraints.maxWidth * 0.8;
-          final height = width * 0.18;
-          return Padding(
-            padding: const EdgeInsets.all(8),
+        ElevatedButton(
+          style: appBtnStyle(Colors.white,
+              minSize: const Size(btnWidth, btnHeight)),
+          onPressed: () {
+            controller.navigateToLogin();
+          },
+          child: Text(
+            'login'.tr,
+            style: btnTitleStyle(primaryLabelColor),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 15.h),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
             child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                onPrimary: Colors.grey,
-                shadowColor: Colors.grey,
-                elevation: 3,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32.0)),
-                minimumSize: Size(width, height),
-              ),
+              style: appBtnStyle(Colors.white.withOpacity(0.15),
+                  minSize: const Size(btnWidth, btnHeight)),
               onPressed: () {
-                controller.navigateToLogin();
+                controller.navigateToRegister();
               },
               child: Text(
-                'login'.tr,
-                style: const TextStyle(
-                    color: Colors.blue, fontFamily: 'SF Pro', fontSize: 16),
+                'register'.tr,
+                style: btnTitleStyle(Colors.white),
               ),
             ),
-          );
-        }),
-        LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-          final width = constraints.maxWidth * 0.8;
-          final height = width * 0.18;
-          return Padding(
-            padding: const EdgeInsets.all(8),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.white.withOpacity(0.15),
-                  onPrimary: Colors.white,
-                  shadowColor: Colors.grey,
-                  elevation: 3,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32.0)),
-                  minimumSize: Size(width, height),
-                ),
-                onPressed: () {
-                  controller.navigateToRegister();
-                },
-                child: Text(
-                  'register'.tr,
-                  style: const TextStyle(
-                      color: Colors.white, fontFamily: 'SF Pro', fontSize: 16),
-                ),
-              ),
-            ),
-          );
-        }),
-        // for space at bottom
-        LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
-          final width = constraints.maxWidth * 0.8;
-          final height = width * 0.2;
-          return SizedBox(width: width, height: height);
-        })
+          ),
+        ),
       ],
     );
 
 // top portion for logo and text
-    Widget topPortion = Padding(
-      padding: const EdgeInsets.only(left: 32, right: 32),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 80, bottom: 20, right: 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset('images/topLogo.png'),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.transparent,
-                    onPrimary: Colors.grey,
-                    shadowColor: Colors.transparent,
-                  ),
-                  onPressed: controller.changeLanguage,
-                  child: Text(
-                    controller.selectedLanguage,
-                    style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
+    Widget topPortion = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: 0, bottom: 20.h, right: 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset('images/topLogo.png'),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.transparent,
+                  onPrimary: Colors.grey,
+                  shadowColor: Colors.transparent,
                 ),
-              ],
-            ),
-          ),
-          Obx(() => Text(
-                controller.welcomeMessage.value.tr,
-                style: const TextStyle(
-                  fontSize: 28,
-                  fontFamily: "Graphik",
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+                onPressed: controller.changeLanguage,
+                child: Text(
+                  controller.selectedLanguage,
+                  style: TextStyle(
+                      fontSize: ScreenUtil().setSp(16),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
                 ),
-              )),
-          Obx(
-            () => Padding(
-              padding: const EdgeInsets.only(top: 15),
-              child: buildPageIndicator(
-                  titles.length, controller.currentPage.value),
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+        Obx(() => Text(
+              controller.welcomeMessage.value.tr,
+              style: TextStyle(
+                fontSize: ScreenUtil().setSp(28),
+                fontFamily: "GraphikSemibold",
+                fontWeight: FontWeight.w600,
+                height: 1.25,
+                color: Colors.white,
+              ),
+            )),
+        Obx(
+          () => Padding(
+            padding: EdgeInsets.only(top: 15.h),
+            child: buildPageIndicator(
+                welcomeScreenTitles.length, controller.currentPage.value),
+          ),
+        ),
+      ],
     );
 
     Widget page1 = LayoutBuilder(
@@ -231,13 +167,13 @@ class Welcome extends StatelessWidget {
         pageView,
         Positioned(
           child: topPortion,
-          top: 0,
-          left: 0,
-          right: 0,
+          top: topSpace,
+          left: leadingTrailingSpace,
+          right: leadingTrailingSpace,
         ),
         Positioned(
           child: bottomButtons,
-          bottom: 0,
+          bottom: bottomSpace,
           left: 0,
           right: 0,
         )
