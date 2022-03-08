@@ -1,6 +1,5 @@
-import 'package:fab_nhl/common/AppColor.dart' as color;
+import 'package:fab_nhl/common/AppColor.dart';
 import 'package:fab_nhl/common/Style.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +31,8 @@ class RegisterMobile extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 21.sp,
                       fontWeight: FontWeight.w600,
-                      color: color.header),
+                      color: header,
+                      fontFamily: 'Graphik'),
                 ),
                 SizedBox(height: 8.h),
                 Text(
@@ -40,7 +40,8 @@ class RegisterMobile extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 15.sp,
                       fontWeight: FontWeight.w400,
-                      color: color.subHeader),
+                      color: subHeader,
+                      fontFamily: 'SF Pro Text'),
                 ),
                 SizedBox(height: 23.h),
                 Text(
@@ -48,23 +49,26 @@ class RegisterMobile extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: color.hintLabel),
+                      color: hintLabel,
+                      fontFamily: 'SF Pro Text'),
                 ),
                 const TextField(
+                    keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
-                  filled: false,
-                ))
+                      filled: false,
+                    ))
               ],
             ),
             Positioned(
               child: Align(
                 alignment: FractionalOffset.bottomCenter,
                 child: SizedBox(
-                  width: double.infinity,
-                  child: TextButton(
-                      style: blueButtonStyle,
+                  width: 116.w,
+                  height: 56.h,
+                  child: ElevatedButton(
+                      style: activeButtonStyle,
                       onPressed: () => {},
-                      child: Text('next'.tr)),
+                      child: Text('next'.tr,style: activeButtonTextStyle)),
                 ),
               ),
             ),
