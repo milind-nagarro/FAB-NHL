@@ -1,5 +1,7 @@
+import 'package:fab_nhl/common/widgets/OnlyBottomCursor.dart';
 import 'package:fab_nhl/module/register/RegisterMobile.dart';
 import 'package:fab_nhl/module/register/RegisterMobileBinder.dart';
+import 'package:fab_nhl/module/setuppin/SetupPin.dart';
 import 'package:fab_nhl/module/welcome/Welcome.dart';
 import 'package:fab_nhl/module/welcome/WelcomeBinder.dart';
 import 'package:fab_nhl/route/RoutePaths.dart' as path;
@@ -15,5 +17,6 @@ class AppPages {
         name: path.registerMobile,
         page: () => RegisterMobile(),
         binding: RegisterMobileBinder()),
+    GetPage(name: path.setupPin, page: () => SetupPin(OnlyBottomCursor()))
   ];
 }

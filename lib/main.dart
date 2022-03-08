@@ -14,6 +14,7 @@ void main() {
       fallbackLocale: const Locale('en_US'),
       getPages: AppPages.routes,
       initialRoute: AppPages.INITIAL,
+      debugShowCheckedModeBanner: false,
     ),
     designSize: const Size(375, 812),
   ));
