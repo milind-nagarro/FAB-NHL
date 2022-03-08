@@ -14,7 +14,6 @@ class Welcome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // bottom buttons login register
     final WelcomeController controller = Get.find();
     const btnWidth = 312.0;
     const btnHeight = 56.0;
@@ -22,6 +21,7 @@ class Welcome extends StatelessWidget {
     final topSpace = 80.h;
     final leadingTrailingSpace = 32.w;
 
+// bottom buttons login register
     Widget bottomButtons = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -56,7 +56,7 @@ class Welcome extends StatelessWidget {
       ],
     );
 
-// top portion for logo and text
+// top portion for logo and language switch btn
     Widget topPortion = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -84,16 +84,12 @@ class Welcome extends StatelessWidget {
             ],
           ),
         ),
-        Obx(() => Text(
-              controller.welcomeMessage.value.tr,
-              style: TextStyle(
-                fontSize: ScreenUtil().setSp(28),
-                fontFamily: "GraphikSemibold",
-                fontWeight: FontWeight.w600,
-                height: 1.25,
-                color: Colors.white,
-              ),
-            )),
+        Obx(
+          () => Text(
+            controller.welcomeMessage.value.tr,
+            style: headerLabelStyle(Colors.white),
+          ),
+        ),
         Obx(
           () => Padding(
             padding: EdgeInsets.only(top: 15.h),
@@ -104,49 +100,24 @@ class Welcome extends StatelessWidget {
       ],
     );
 
-    Widget page1 = LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      return Container(
-        width: constraints.maxWidth,
-        height: constraints.maxHeight,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/bg1.jpg'),
-            fit: BoxFit.cover,
+// scrollable images
+    List<Widget> bgImages = [];
+    for (var i = 1; i <= welcomeScreenTitles.length; i++) {
+      bgImages.add(LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+        return Container(
+          width: constraints.maxWidth,
+          height: constraints.maxHeight,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('images/bg$i.jpg'),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: const SizedBox(),
-      );
-    });
-    Widget page2 = LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      return Container(
-        width: constraints.maxWidth,
-        height: constraints.maxHeight,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/bg2.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: const SizedBox(),
-      );
-    });
-
-    Widget page3 = LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-      return Container(
-        width: constraints.maxWidth,
-        height: constraints.maxHeight,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/bg3.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: const SizedBox(),
-      );
-    });
+          child: const SizedBox(),
+        );
+      }));
+    }
 
     PageController pgcontroller = PageController(
       initialPage: 0,
@@ -156,12 +127,9 @@ class Welcome extends StatelessWidget {
           controller.setPage(page);
         },
         controller: pgcontroller,
-        children: [
-          page1,
-          page2,
-          page3,
-        ]);
+        children: bgImages);
 
+// stack to lay text and buttons above page view
     Widget stack = Stack(
       children: [
         pageView,

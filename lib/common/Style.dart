@@ -46,6 +46,17 @@ TextStyle btnTitleStyle(Color color) {
   );
 }
 
+// Style for header labels throughout the app
+TextStyle headerLabelStyle(Color color) {
+  return TextStyle(
+    fontSize: ScreenUtil().setSp(28),
+    fontFamily: "GraphikSemibold",
+    fontWeight: FontWeight.w600,
+    height: 1.25,
+    color: color,
+  );
+}
+
 final TextStyle activeButtonTextStyle = TextStyle(
     color: Colors.white,
     fontFamily: 'SF Pro Text',
