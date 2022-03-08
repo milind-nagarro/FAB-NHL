@@ -10,4 +10,5 @@ const Map<String, String> labels = {
   'enter_mobile_adha': 'Please enter the mobile number registered with ADHA',
   'mobile_number': 'Mobile Number',
   'next': 'Next',
+  'empty_mobile_error':'Please enter mobile number'
 };

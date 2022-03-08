@@ -1,15 +1,15 @@
 import 'package:fab_nhl/common/AppColor.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+import 'AppColor.dart';
+
+final ButtonStyle activeButtonStyle = ElevatedButton.styleFrom(
   onPrimary: Colors.white,
-  primary: Colors.blue,
+  primary: primaryLabelColor,
   padding: EdgeInsets.symmetric(vertical: 18.h),
-  shape: const RoundedRectangleBorder(
-    borderRadius: BorderRadius.all(Radius.circular(28)),
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(28.0.r),
   ),
 );
 
@@ -45,3 +45,9 @@ TextStyle btnTitleStyle(Color color) {
     fontSize: ScreenUtil().setSp(16),
   );
 }
+
+final TextStyle activeButtonTextStyle = TextStyle(
+    color: Colors.white,
+    fontFamily: 'SF Pro Text',
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600);
