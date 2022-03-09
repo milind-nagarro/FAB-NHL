@@ -25,38 +25,39 @@ class Verification extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('enter_verification'.tr, style: headerLabelStyle(header)),
+                Text('enter_verification'.tr,
+                    style: FABStyles.appStyleHeaderText(header)),
                 SizedBox(height: 8.h),
-                Text('verification_sent_msg'.tr, style: subHeaderLabelStyle),
+                Text('verification_sent_msg'.tr,
+                    style: FABStyles.subHeaderLabelStyle),
                 const TextField(
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       filled: false,
-                    )
-                ),
+                    )),
                 SizedBox(height: 100.h),
                 SizedBox(
                     width: double.infinity,
-                    child: Text('otp_expire_msg'.tr, style: subHeaderLabelStyle,textAlign: TextAlign.center)
-                ),
+                    child: Text('otp_expire_msg'.tr,
+                        style: FABStyles.subHeaderLabelStyle,
+                        textAlign: TextAlign.center)),
                 SizedBox(height: 16.h),
                 SizedBox(
                     width: double.infinity,
-                    child: Text('resend_code'.tr, style: redirectLabelStyle,textAlign: TextAlign.center)
-                ),
+                    child: Text('resend_code'.tr,
+                        style: FABStyles.redirectLabelStyle,
+                        textAlign: TextAlign.center)),
               ],
             ),
             Positioned(
               child: Align(
                 alignment: FractionalOffset.bottomCenter,
                 child: SizedBox(
-                  width: 116.w,
-                  height: 56.h,
-                  child: ElevatedButton(
-                      style: activeButtonStyle,
-                      onPressed: () => {controller.navigateToEmailRegister()},
-                      child: Text('next'.tr, style: activeButtonTextStyle)),
-                ),
+                    width: 116.w,
+                    height: 56.h,
+                    child: FABWidget.appButton('next'.tr,
+                        onPressed: () =>
+                            {controller.navigateToEmailRegister()})),
               ),
             ),
           ]),

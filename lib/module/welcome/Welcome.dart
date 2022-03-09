@@ -27,7 +27,7 @@ class Welcome extends StatelessWidget {
       children: [
         FABWidget.appButton(
           'login'.tr,
-          () => {controller.navigateToLogin()},
+          onPressed: () => {controller.navigateToLogin()},
           bgColor: Colors.white,
           minSize: const Size(btnWidth, btnHeight),
           textColor: primaryLabelColor,
@@ -36,8 +36,8 @@ class Welcome extends StatelessWidget {
           padding: EdgeInsets.only(top: 15.h),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
-            child: FABWidget.appButton(
-                'register'.tr, () => {controller.navigateToRegister()},
+            child: FABWidget.appButton('register'.tr,
+                onPressed: () => {controller.navigateToRegister()},
                 bgColor: Colors.white.withOpacity(0.15)),
           ),
         ),
@@ -75,7 +75,7 @@ class Welcome extends StatelessWidget {
         Obx(
           () => Text(
             controller.welcomeMessage.value.tr,
-            style: appStyleHeaderText(Colors.white),
+            style: FABStyles.appStyleHeaderText(Colors.white),
           ),
         ),
         Obx(
