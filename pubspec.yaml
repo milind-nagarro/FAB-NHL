@@ -69,7 +69,28 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
+  assets:
+    - images/bg1.jpg
+    - images/2.0x/bg1.jpg
+    - images/3.0x/bg1.jpg
+    - images/bg2.jpg
+    - images/2.0x/bg2.jpg
+    - images/3.0x/bg2.jpg
+    - images/bg3.jpg
+    - images/2.0x/bg3.jpg
+    - images/3.0x/bg3.jpg
+    - images/login.png
+    - images/2.0x/login.png
+    - images/3.0x/login.png
+    - images/register.png
+    - images/2.0x/register.png
+    - images/3.0x/register.png
+    - images/topLogo.png
+    - images/2.0x/topLogo.png
+    - images/3.0x/topLogo.png
+    - images/face_id.png
+    - images/2.0x/face_id.png
+    - images/3.0x/face_id.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
@@ -84,7 +105,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+  fonts:
+    - family: SF Pro
+      fonts:
+        - asset: fonts/SF-Pro.ttf
+    - family: Graphik
+      fonts:
+        - asset: fonts/GraphikRegular.otf
+        - asset: fonts/GraphikSemibold.otf
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
