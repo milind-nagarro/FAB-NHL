@@ -1,9 +1,11 @@
 import 'package:fab_nhl/module/setuppin/SetupConfirmController.dart';
 import 'package:flutter/material.dart';
+import 'package:fab_nhl/common/AppColor.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../common/AppColor.dart';
+import '../../common/Style.dart';
 import '../../common/widgets/OnlyBottomCursor.dart';
 
 class SetupConfirmPinPage extends StatefulWidget {
@@ -15,41 +17,41 @@ class SetupConfirmPinPage extends StatefulWidget {
 
 class _SetupConfirmPinPageState extends State<SetupConfirmPinPage>
     with AutomaticKeepAliveClientMixin {
-  SetupConfirmController setupConfirmController = Get.put(SetupConfirmController());
+  final SetupConfirmController controller = Get.find();
+  TextEditingController textController = TextEditingController();
+  FocusNode focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-          'set_pin'.tr,
-          style: const TextStyle(color: Colors.black),
-        ),
-        elevation: 0,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 64, 24, 24),
-        child: Column(
-            children: [
-              const SetupConfirmPin(),
-              SizedBox(height: 33.h),
-              const Center(child: OnlyBottomCursor()),
-              const Spacer(),
-              Container(
-                alignment: Alignment.bottomCenter,
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 50, 0, 0),
+            child: Align(
+                alignment: Alignment.topLeft,
                 child: Text(
-                  'next'.tr,
-                  style: TextStyle(
-                      fontStyle: FontStyle.normal,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 21.sp),
-                ),
-              ),
-              SizedBox(height: 33.h),
-            ],
+                  'Cancel',
+                  style: TextStyle(color: smallTextColor),
+                )),
           ),
+          SizedBox(height: 33.h),
+          const SetupConfirmPin(),
+          SizedBox(height: 33.h),
+          Center(
+              child: OnlyBottomCursor(
+                  controller: textController, 
+                  focusNode: focusNode,
+                onChange: (value) => {
+                    controller.onPinTextChanged(value)
+                },
+              )),
+          const Spacer(),
+          FABWidget.appButton('next'.tr,
+              minSize: Size(100.w, 50.h), onPressed: () {}),
+          SizedBox(height: 33.h),
+        ],
       ),
     );
   }
