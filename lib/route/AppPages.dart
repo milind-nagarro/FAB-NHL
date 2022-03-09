@@ -10,7 +10,7 @@ import 'package:fab_nhl/route/RoutePaths.dart' as path;
 import 'package:get/get.dart';
 
 class AppPages {
-  static const INITIAL = path.setupPin;
+  static const INITIAL = path.welcome;
 
   static final routes = [
     GetPage(

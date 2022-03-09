@@ -25,6 +25,8 @@ class _SetupConfirmPinPageState extends State<SetupConfirmPinPage>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
+      appBar:
+          FABWidget.appTopBar("Set Pin", hasCancel: true, backAction: () {}),
       body: Column(
         children: [
           Padding(
@@ -41,12 +43,10 @@ class _SetupConfirmPinPageState extends State<SetupConfirmPinPage>
           SizedBox(height: 33.h),
           Center(
               child: OnlyBottomCursor(
-                  controller: textController, 
-                  focusNode: focusNode,
-                onChange: (value) => {
-                    controller.onPinTextChanged(value)
-                },
-              )),
+            controller: textController,
+            focusNode: focusNode,
+            onChange: (value) => {controller.onPinTextChanged(value)},
+          )),
           const Spacer(),
           FABWidget.appButton('next'.tr,
               minSize: Size(100.w, 50.h), onPressed: () {}),

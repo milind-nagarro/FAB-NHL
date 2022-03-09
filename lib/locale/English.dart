@@ -22,6 +22,7 @@ const Map<String, String> labels = {
       'The verification code is sent to your registered mobile number',
   'otp_expire_msg': 'Your code will expire in ',
   'resend_code': 'Resend code',
+  'your_otp': 'Your OTP',
 // Setup PIN
   'set_pin': 'Set PIN',
   'create_memorable_pin': 'Create a memorable PIN',

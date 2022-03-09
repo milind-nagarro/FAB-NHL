@@ -18,7 +18,7 @@ class RegisterMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: FABWidget.appTopBar('Register'),
+        appBar: FABWidget.appTopBar('register'.tr),
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),

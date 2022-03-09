@@ -61,8 +61,7 @@ class FABStyles {
     // primarySwatch: Colors.green,
     colorScheme: ColorScheme.fromSwatch()
         .copyWith(primary: primaryLabelColor, secondary: primaryLabelColor),
-    textSelectionTheme:
-        const TextSelectionThemeData(cursorColor: primaryLabelColor),
+    textSelectionTheme: TextSelectionThemeData(cursorColor: primaryLabelColor),
   );
 }
 
@@ -101,7 +100,7 @@ class FABWidget {
       leadingWidth: hasCancel ? 80.w : null,
       leading: hasCancel
           ? TextButton(
-              onPressed: () => {backAction},
+              onPressed: backAction,
               child: Text(
                 'Cancel',
                 style: TextStyle(fontFamily: 'SF Pro Text', fontSize: 15.w),
