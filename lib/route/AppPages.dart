@@ -1,5 +1,7 @@
 import 'package:fab_nhl/module/register/RegisterMobile.dart';
 import 'package:fab_nhl/module/register/RegisterMobileBinder.dart';
+import 'package:fab_nhl/module/setuppin/SetupConfirmPinBinder.dart';
+import 'package:fab_nhl/module/setuppin/SetupConfirmPinPage.dart';
 import 'package:fab_nhl/module/verification/Verification.dart';
 import 'package:fab_nhl/module/verification/VerificationBinder.dart';
 import 'package:fab_nhl/module/welcome/Welcome.dart';
@@ -25,5 +27,9 @@ class AppPages {
         name: path.verification,
         page: () => Verification(),
         binding: VerificationBinder()),
+    GetPage(
+        name: path.setupPin,
+        page: () => const SetupConfirmPinPage(),
+        binding: SetupConfirmPinBinder())
   ];
 }
