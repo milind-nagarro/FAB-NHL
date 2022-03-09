@@ -8,7 +8,7 @@ class FABStyles {
       {Size? minSize, Color? highlightColor}) {
     return ElevatedButton.styleFrom(
         primary: primaryColor,
-        onPrimary: highlightColor ?? primaryColor,
+        onPrimary: highlightColor ?? Colors.white,
         shadowColor: Colors.grey,
         elevation: 3,
         shape:
