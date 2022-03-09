@@ -6,23 +6,19 @@ import 'package:pinput/pinput.dart';
 
 import '../AppColor.dart';
 
-class OnlyBottomCursor extends StatefulWidget {
-  const OnlyBottomCursor({Key? key}) : super(key: key);
+class OnlyBottomCursor extends StatelessWidget {
+  const OnlyBottomCursor(
+      {Key? key,
+      required this.controller,
+      required this.focusNode,
+      this.length,
+      this.onChange})
+      : super(key: key);
 
-  @override
-  _OnlyBottomCursorState createState() => _OnlyBottomCursorState();
-}
-
-class _OnlyBottomCursorState extends State<OnlyBottomCursor> {
-  final controller = TextEditingController();
-  final focusNode = FocusNode();
-
-  @override
-  void dispose() {
-    controller.dispose();
-    focusNode.dispose();
-    super.dispose();
-  }
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final int? length;
+  final Function(String)? onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -54,15 +50,15 @@ class _OnlyBottomCursorState extends State<OnlyBottomCursor> {
         fontSize: 22.sp,
         color: borderColor,
       ),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: cursorColor,
         shape: BoxShape.rectangle,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(color: cursorColor, spreadRadius: 0),
         ],
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(8),
-          topRight: Radius.circular(8),
+          topLeft: Radius.circular(4.r),
+          topRight: Radius.circular(4.r),
         ),
       ),
     );
@@ -82,7 +78,7 @@ class _OnlyBottomCursorState extends State<OnlyBottomCursor> {
 
     return Pinput(
       key: const Key("PinputWidget"),
-      length: 4,
+      length: length ?? 4,
       pinAnimationType: PinAnimationType.slide,
       controller: controller,
       focusNode: focusNode,
@@ -94,6 +90,7 @@ class _OnlyBottomCursorState extends State<OnlyBottomCursor> {
       focusedPinTheme: focusedPinTheme,
       preFilledWidget: preFilledWidget,
       submittedPinTheme: submittedPinTheme,
+      onChanged: onChange,
     );
   }
 }
