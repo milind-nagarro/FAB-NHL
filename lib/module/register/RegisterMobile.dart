@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../common/utilities/app_constants.dart';
 import 'RegisterMobileController.dart';
 
 class RegisterMobile extends StatelessWidget {
@@ -50,11 +51,11 @@ class RegisterMobile extends StatelessWidget {
                       style: FABStyles.appStyleInputText,
                       decoration: InputDecoration(
                           filled: false,
-                          prefixText: isMobileVerification ? '+971 ' : null,
+                          prefixText: isMobileVerification ? uaeCode : null,
                           labelText: isMobileVerification
                               ? 'mobile_number'.tr
                               : 'email'.tr,
-                          // labelStyle: FABStyles.redirectLabelStyle,
+                          // labelStyle: FABStyles.appStyleInputText,
                           errorText: (controller.isvalidMobile.value ==
                                   MobileValidationState.invalid)
                               ? 'invalid_mobile_number'.tr

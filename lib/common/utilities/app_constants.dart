@@ -7,3 +7,5 @@ enum AppLanguage {
   arabic,
   english,
 }
+
+const String uaeCode = '+971 ';

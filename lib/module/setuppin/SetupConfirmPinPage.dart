@@ -26,20 +26,28 @@ class _SetupConfirmPinPageState extends State<SetupConfirmPinPage>
     super.build(context);
     return Scaffold(
       appBar:
-          FABWidget.appTopBar("Set Pin", hasCancel: true, backAction: () {}),
+          FABWidget.appTopBar('set_pin'.tr),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 50, 0, 0),
-            child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Cancel',
-                  style: TextStyle(color: smallTextColor),
-                )),
-          ),
           SizedBox(height: 33.h),
-          const SetupConfirmPin(),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'set_pin'.tr,
+                style: TextStyle(
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 21.sp),
+              ),
+              SizedBox(height: 8.h),
+              Text(
+                'create_memorable_pin'.tr,
+                style: TextStyle(
+                    fontStyle: FontStyle.normal, fontSize: 14.sp, color: lightGrey),
+              ),
+            ],
+          ),
           SizedBox(height: 33.h),
           Center(
               child: OnlyBottomCursor(
@@ -48,8 +56,8 @@ class _SetupConfirmPinPageState extends State<SetupConfirmPinPage>
             onChange: (value) => {controller.onPinTextChanged(value)},
           )),
           const Spacer(),
-          FABWidget.appButton('next'.tr,
-              minSize: Size(100.w, 50.h), onPressed: () {}),
+          Obx(()=>FABWidget.appButton('next'.tr,
+              minSize: Size(100.w, 50.h), onPressed: (controller.pin.value.length == 4) ? () {} : null)),
           SizedBox(height: 33.h),
         ],
       ),
@@ -58,30 +66,4 @@ class _SetupConfirmPinPageState extends State<SetupConfirmPinPage>
 
   @override
   bool get wantKeepAlive => true;
-}
-
-class SetupConfirmPin extends StatelessWidget {
-  const SetupConfirmPin({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          'set_pin'.tr,
-          style: TextStyle(
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.bold,
-              fontSize: 21.sp),
-        ),
-        SizedBox(height: 8.h),
-        Text(
-          'create_memorable_pin'.tr,
-          style: TextStyle(
-              fontStyle: FontStyle.normal, fontSize: 14.sp, color: lightGrey),
-        ),
-      ],
-    );
-  }
 }
