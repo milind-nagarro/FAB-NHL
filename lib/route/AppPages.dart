@@ -1,5 +1,7 @@
 import 'package:fab_nhl/module/register/RegisterMobile.dart';
 import 'package:fab_nhl/module/register/RegisterMobileBinder.dart';
+import 'package:fab_nhl/module/verification/Verification.dart';
+import 'package:fab_nhl/module/verification/VerificationBinder.dart';
 import 'package:fab_nhl/module/welcome/Welcome.dart';
 import 'package:fab_nhl/module/welcome/WelcomeBinder.dart';
 import 'package:fab_nhl/route/RoutePaths.dart' as path;
@@ -13,7 +15,15 @@ class AppPages {
         name: path.welcome, page: () => Welcome(), binding: WelcomeBinder()),
     GetPage(
         name: path.registerMobile,
-        page: () => RegisterMobile(),
+        page: () => RegisterMobile(true),
         binding: RegisterMobileBinder()),
+    GetPage(
+        name: path.registerEmail,
+        page: () => RegisterMobile(false),
+        binding: RegisterMobileBinder()),
+    GetPage(
+        name: path.verification,
+        page: () => Verification(),
+        binding: VerificationBinder()),
   ];
 }

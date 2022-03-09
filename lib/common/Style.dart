@@ -62,3 +62,15 @@ final TextStyle activeButtonTextStyle = TextStyle(
     fontFamily: 'SF Pro Text',
     fontSize: 16.sp,
     fontWeight: FontWeight.w600);
+
+final TextStyle subHeaderLabelStyle = TextStyle(
+    fontSize: 15.sp,
+    fontWeight: FontWeight.w400,
+    color: subHeader,
+    fontFamily: 'SF Pro Text');
+
+final TextStyle redirectLabelStyle = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+    color: hintLabel,
+    fontFamily: 'SF Pro Text');

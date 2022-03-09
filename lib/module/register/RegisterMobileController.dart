@@ -1,11 +1,17 @@
+import 'package:fab_nhl/route/RoutePaths.dart';
 import 'package:get/get.dart';
 
 class RegisterMobileController extends GetxController {
+  final isvalidMobile = false.obs;
 
-  String? validatePhone(String value) {
-    if (!(value.length > 5) && value.isNotEmpty) {
-      return 'empty_mobile_error'.tr;
+  validatePhone(String value) {
+    isvalidMobile(false);
+    if (value.isNotEmpty && value.length >5) {
+      isvalidMobile(true);
     }
-    return null;
+  }
+
+  void navigateToVerification() {
+    Get.toNamed(verification);
   }
 }
