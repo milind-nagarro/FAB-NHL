@@ -18,65 +18,70 @@ class RegisterMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: FABWidget.appTopBar('Register'),
         body: SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
-        child: Stack(children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(isMobileVerification ? 'enter_mobile'.tr : 'enter_email'.tr,
-                  style: FABStyles.appStyleHeaderText(header)),
-              SizedBox(height: 8.h),
-              Text(
-                  isMobileVerification
-                      ? 'enter_mobile_adha'.tr
-                      : 'enter_email_valid'.tr,
-                  style: FABStyles.subHeaderLabelStyle),
-              SizedBox(height: 23.h),
-              Obx(
-                () => TextField(
-                  keyboardType: isMobileVerification
-                      ? TextInputType.phone
-                      : TextInputType.emailAddress,
-                  onChanged: (text) {
-                    controller.setMobileNumber(text);
-                  },
-                  style: FABStyles.appStyleInputText,
-                  decoration: InputDecoration(
-                      filled: false,
-                      prefixText: isMobileVerification ? '+971 ' : null,
-                      labelText: isMobileVerification
-                          ? 'mobile_number'.tr
-                          : 'email'.tr,
-                      // labelStyle: FABStyles.redirectLabelStyle,
-                      errorText: (controller.isvalidMobile.value ==
-                              MobileValidationState.invalid)
-                          ? 'invalid_mobile_number'.tr
-                          : null,
-                      suffixIcon: (controller.isvalidMobile.value ==
-                              MobileValidationState.invalid)
-                          ? Image.asset('images/error.png')
-                          : null,
-                      errorMaxLines: 2),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
+            child: Stack(children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      isMobileVerification
+                          ? 'enter_mobile'.tr
+                          : 'enter_email'.tr,
+                      style: FABStyles.appStyleHeaderText(header)),
+                  SizedBox(height: 8.h),
+                  Text(
+                      isMobileVerification
+                          ? 'enter_mobile_adha'.tr
+                          : 'enter_email_valid'.tr,
+                      style: FABStyles.subHeaderLabelStyle),
+                  SizedBox(height: 23.h),
+                  Obx(
+                    () => TextField(
+                      keyboardType: isMobileVerification
+                          ? TextInputType.phone
+                          : TextInputType.emailAddress,
+                      onChanged: (text) {
+                        controller.setMobileNumber(text);
+                      },
+                      // cursorColor: primaryLabelColor,
+                      style: FABStyles.appStyleInputText,
+                      decoration: InputDecoration(
+                          filled: false,
+                          prefixText: isMobileVerification ? '+971 ' : null,
+                          labelText: isMobileVerification
+                              ? 'mobile_number'.tr
+                              : 'email'.tr,
+                          // labelStyle: FABStyles.redirectLabelStyle,
+                          errorText: (controller.isvalidMobile.value ==
+                                  MobileValidationState.invalid)
+                              ? 'invalid_mobile_number'.tr
+                              : null,
+                          suffixIcon: (controller.isvalidMobile.value ==
+                                  MobileValidationState.invalid)
+                              ? Image.asset('images/error.png')
+                              : null,
+                          errorMaxLines: 2),
+                    ),
+                  ),
+                ],
+              ),
+              Positioned(
+                child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: SizedBox(
+                    width: 116.w,
+                    height: 56.h,
+                    child: Obx(() => FABWidget.appButton('next'.tr,
+                        onPressed: nextStep(controller.isvalidMobile))),
+                  ),
                 ),
               ),
-            ],
+            ]),
           ),
-          Positioned(
-            child: Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: SizedBox(
-                width: 116.w,
-                height: 56.h,
-                child: Obx(() => FABWidget.appButton('next'.tr,
-                    onPressed: nextStep(controller.isvalidMobile))),
-              ),
-            ),
-          ),
-        ]),
-      ),
-    ));
+        ));
   }
 
   // return a function or null to disable next button based on mobile number validation state

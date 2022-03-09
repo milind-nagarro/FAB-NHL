@@ -10,3 +10,4 @@ const darkBlue = Color.fromRGBO(30, 60, 87, 1);
 const lightGrey = Color.fromRGBO(104, 115, 129, 1);
 const primaryLabelColor = Color(0XFF1967FD);
 const inputTextColor = Color(0XFF000000);
+const headerTextColor = Color(0XFF222325);

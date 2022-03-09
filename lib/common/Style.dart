@@ -56,6 +56,14 @@ class FABStyles {
       fontWeight: FontWeight.w500,
       color: hintLabel,
       fontFamily: 'SF Pro Text');
+
+  static final appThemeData = ThemeData(
+    // primarySwatch: Colors.green,
+    colorScheme: ColorScheme.fromSwatch()
+        .copyWith(primary: primaryLabelColor, secondary: primaryLabelColor),
+    textSelectionTheme:
+        const TextSelectionThemeData(cursorColor: primaryLabelColor),
+  );
 }
 
 // FAB app design specific widgets
@@ -74,6 +82,36 @@ class FABWidget {
       child: Text(
         text,
         style: FABStyles.appStyleButtonText(textColor ?? Colors.white),
+      ),
+    );
+  }
+
+  // top bar with title and back button
+  static AppBar appTopBar(
+    String title, {
+    bool hasCancel = false,
+    Function()? backAction,
+  }) {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      iconTheme: hasCancel
+          ? null
+          : IconThemeData(color: primaryLabelColor, size: 25.r),
+      leadingWidth: hasCancel ? 80.w : null,
+      leading: hasCancel
+          ? TextButton(
+              onPressed: () => {backAction},
+              child: Text(
+                'Cancel',
+                style: TextStyle(fontFamily: 'SF Pro Text', fontSize: 15.w),
+              ),
+            )
+          : null,
+      title: Text(
+        title,
+        style: TextStyle(
+            color: headerTextColor, fontFamily: 'SF Pro Text', fontSize: 16.sp),
       ),
     );
   }

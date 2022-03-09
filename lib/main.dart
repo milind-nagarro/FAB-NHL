@@ -1,3 +1,4 @@
+import 'package:fab_nhl/common/Style.dart';
 import 'package:fab_nhl/locale/AppText.dart';
 import 'package:fab_nhl/route/AppPages.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ void main() {
       locale: const Locale('en_US'),
       // translations will be displayed in that locale
       fallbackLocale: const Locale('en_US'),
+      theme: FABStyles.appThemeData,
       getPages: AppPages.routes,
       initialRoute: AppPages.INITIAL,
     ),
