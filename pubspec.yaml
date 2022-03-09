@@ -91,6 +91,9 @@ flutter:
     - images/face_id.png
     - images/2.0x/face_id.png
     - images/3.0x/face_id.png
+    - images/error.png
+    - images/2.0x/error.png
+    - images/3.0x/error.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
@@ -109,6 +112,7 @@ flutter:
     - family: SF Pro
       fonts:
         - asset: fonts/SF-Pro.ttf
+        - asset: fonts/SFProText-Regular.ttf
     - family: Graphik
       fonts:
         - asset: fonts/GraphikRegular.otf

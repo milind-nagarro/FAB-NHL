@@ -8,7 +8,7 @@ class FABStyles {
       {Size? minSize, Color? highlightColor}) {
     return ElevatedButton.styleFrom(
         primary: primaryColor,
-        onPrimary: highlightColor ?? primaryColor,
+        onPrimary: highlightColor ?? Colors.white,
         shadowColor: Colors.grey,
         elevation: 3,
         shape:
@@ -23,20 +23,27 @@ class FABStyles {
       color: color,
       fontFamily: 'SF Pro',
       fontWeight: FontWeight.w600,
-      fontSize: ScreenUtil().setSp(16),
+      fontSize: 16.sp,
     );
   }
 
 // Style for header labels throughout the app
   static TextStyle appStyleHeaderText(Color color) {
     return TextStyle(
-      fontSize: ScreenUtil().setSp(28),
+      fontSize: 28.sp,
       fontFamily: "GraphikSemibold",
       fontWeight: FontWeight.w600,
       height: 1.25,
       color: color,
     );
   }
+
+// Style for input text
+  static final TextStyle appStyleInputText = TextStyle(
+      fontSize: 19.sp,
+      // fontWeight: FontWeight.w500,
+      color: inputTextColor,
+      fontFamily: 'SF Pro Text');
 
   static final TextStyle subHeaderLabelStyle = TextStyle(
       fontSize: 15.sp,
@@ -60,14 +67,10 @@ class FABWidget {
           Color? textColor,
           Size? minSize,
           Color? highlightColor}) {
-    return TextButton(
+    return ElevatedButton(
       style: FABStyles.appStyleButton(bgColor ?? primaryLabelColor,
           minSize: minSize),
-      onPressed: () {
-        if (onPressed != null) {
-          onPressed();
-        }
-      },
+      onPressed: onPressed,
       child: Text(
         text,
         style: FABStyles.appStyleButtonText(textColor ?? Colors.white),

@@ -64,7 +64,7 @@ class Welcome extends StatelessWidget {
                 child: Text(
                   controller.selectedLanguage,
                   style: TextStyle(
-                      fontSize: ScreenUtil().setSp(16),
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
