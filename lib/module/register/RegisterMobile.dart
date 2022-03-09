@@ -42,8 +42,10 @@ class RegisterMobile extends StatelessWidget {
                   onChanged: (text) {
                     controller.setMobileNumber(text);
                   },
+                  style: FABStyles.appStyleInputText,
                   decoration: InputDecoration(
                       filled: false,
+                      prefixText: isMobileVerification ? '+971 ' : null,
                       labelText: isMobileVerification
                           ? 'mobile_number'.tr
                           : 'email'.tr,
@@ -51,6 +53,10 @@ class RegisterMobile extends StatelessWidget {
                       errorText: (controller.isvalidMobile.value ==
                               MobileValidationState.invalid)
                           ? 'invalid_mobile_number'.tr
+                          : null,
+                      suffixIcon: (controller.isvalidMobile.value ==
+                              MobileValidationState.invalid)
+                          ? Image.asset('images/error.png')
                           : null,
                       errorMaxLines: 2),
                 ),
@@ -76,6 +82,9 @@ class RegisterMobile extends StatelessWidget {
   // return a function or null to disable next button based on mobile number validation state
   Function()? nextStep(Rx<MobileValidationState> vState) {
     if (isMobileVerification) {
+      if (controller.isNumberBlank.value) {
+        return null;
+      }
       switch (vState.value) {
         case MobileValidationState.invalid:
           return null;

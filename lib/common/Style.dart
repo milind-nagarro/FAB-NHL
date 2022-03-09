@@ -38,6 +38,13 @@ class FABStyles {
     );
   }
 
+// Style for input text
+  static final TextStyle appStyleInputText = TextStyle(
+      fontSize: 19.sp,
+      // fontWeight: FontWeight.w500,
+      color: inputTextColor,
+      fontFamily: 'SF Pro Text');
+
   static final TextStyle subHeaderLabelStyle = TextStyle(
       fontSize: 15.sp,
       fontWeight: FontWeight.w400,
