@@ -2,30 +2,8 @@ import 'package:fab_nhl/common/AppColor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'AppColor.dart';
-
-final ButtonStyle activeButtonStyle = ElevatedButton.styleFrom(
-  onPrimary: Colors.white,
-  primary: primaryLabelColor,
-  padding: EdgeInsets.symmetric(vertical: 18.h),
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(28.0.r),
-  ),
-);
-
-final ButtonStyle blueButtonStyle = ButtonStyle(
-    backgroundColor: MaterialStateProperty.all(Colors.blue),
-    foregroundColor: MaterialStateProperty.all(Colors.white),
-    padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 16.h)),
-    textStyle: MaterialStateProperty.all(
-        TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600)),
-    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-        RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(28.0.r),
-    )));
-
 // Style for buttons throughout the app
-ButtonStyle appBtnStyle(Color primaryColor,
+ButtonStyle appStyleButton(Color primaryColor,
     {Size? minSize, Color? highlightColor}) {
   return ElevatedButton.styleFrom(
       primary: primaryColor,
@@ -37,7 +15,7 @@ ButtonStyle appBtnStyle(Color primaryColor,
 }
 
 // Style for button titles throughout the app
-TextStyle btnTitleStyle(Color color) {
+TextStyle appStyleButtonText(Color color) {
   return TextStyle(
     color: color,
     fontFamily: 'SF Pro',
@@ -47,7 +25,7 @@ TextStyle btnTitleStyle(Color color) {
 }
 
 // Style for header labels throughout the app
-TextStyle headerLabelStyle(Color color) {
+TextStyle appStyleHeaderText(Color color) {
   return TextStyle(
     fontSize: ScreenUtil().setSp(28),
     fontFamily: "GraphikSemibold",
@@ -57,8 +35,20 @@ TextStyle headerLabelStyle(Color color) {
   );
 }
 
-final TextStyle activeButtonTextStyle = TextStyle(
-    color: Colors.white,
-    fontFamily: 'SF Pro Text',
-    fontSize: 16.sp,
-    fontWeight: FontWeight.w600);
+class FABWidget {
+  static // Button to be used throughout the app
+      Widget appButton(String text, Function() onPressed,
+          {Color? bgColor,
+          Color? textColor,
+          Size? minSize,
+          Color? highlightColor}) {
+    return TextButton(
+      style: appStyleButton(bgColor ?? primaryLabelColor, minSize: minSize),
+      onPressed: () => {onPressed()},
+      child: Text(
+        text,
+        style: appStyleButtonText(textColor ?? Colors.white),
+      ),
+    );
+  }
+}

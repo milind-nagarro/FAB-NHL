@@ -25,32 +25,20 @@ class Welcome extends StatelessWidget {
     Widget bottomButtons = Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        ElevatedButton(
-          style: appBtnStyle(Colors.white,
-              minSize: const Size(btnWidth, btnHeight)),
-          onPressed: () {
-            controller.navigateToLogin();
-          },
-          child: Text(
-            'login'.tr,
-            style: btnTitleStyle(primaryLabelColor),
-          ),
+        FABWidget.appButton(
+          'login'.tr,
+          () => {controller.navigateToLogin()},
+          bgColor: Colors.white,
+          minSize: const Size(btnWidth, btnHeight),
+          textColor: primaryLabelColor,
         ),
         Padding(
           padding: EdgeInsets.only(top: 15.h),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
-            child: ElevatedButton(
-              style: appBtnStyle(Colors.white.withOpacity(0.15),
-                  minSize: const Size(btnWidth, btnHeight)),
-              onPressed: () {
-                controller.navigateToRegister();
-              },
-              child: Text(
-                'register'.tr,
-                style: btnTitleStyle(Colors.white),
-              ),
-            ),
+            child: FABWidget.appButton(
+                'register'.tr, () => {controller.navigateToRegister()},
+                bgColor: Colors.white.withOpacity(0.15)),
           ),
         ),
       ],
@@ -66,7 +54,7 @@ class Welcome extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset('images/topLogo.png'),
-              ElevatedButton(
+              TextButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.transparent,
                   onPrimary: Colors.grey,
@@ -87,7 +75,7 @@ class Welcome extends StatelessWidget {
         Obx(
           () => Text(
             controller.welcomeMessage.value.tr,
-            style: headerLabelStyle(Colors.white),
+            style: appStyleHeaderText(Colors.white),
           ),
         ),
         Obx(

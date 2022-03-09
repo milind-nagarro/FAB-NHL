@@ -58,15 +58,7 @@ class RegisterMobile extends StatelessWidget {
               alignment: FractionalOffset.bottomCenter,
               child: SizedBox(
                 width: double.infinity,
-                child: TextButton(
-                    style: appBtnStyle(primaryLabelColor),
-                    onPressed: () {
-                      Get.back();
-                    },
-                    child: Text(
-                      'next'.tr,
-                      style: btnTitleStyle(Colors.white),
-                    )),
+                child: FABWidget.appButton('next'.tr, () => {Get.back()}),
               ),
             ),
           ),
