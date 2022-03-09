@@ -23,14 +23,14 @@ class FABStyles {
       color: color,
       fontFamily: 'SF Pro',
       fontWeight: FontWeight.w600,
-      fontSize: ScreenUtil().setSp(16),
+      fontSize: 16.sp,
     );
   }
 
 // Style for header labels throughout the app
   static TextStyle appStyleHeaderText(Color color) {
     return TextStyle(
-      fontSize: ScreenUtil().setSp(28),
+      fontSize: 28.sp,
       fontFamily: "GraphikSemibold",
       fontWeight: FontWeight.w600,
       height: 1.25,
