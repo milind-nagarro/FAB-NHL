@@ -35,6 +35,23 @@ TextStyle appStyleHeaderText(Color color) {
   );
 }
 
+final TextStyle activeButtonTextStyle = TextStyle(
+    color: Colors.white,
+    fontFamily: 'SF Pro Text',
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600);
+
+final TextStyle subHeaderLabelStyle = TextStyle(
+    fontSize: 15.sp,
+    fontWeight: FontWeight.w400,
+    color: subHeader,
+    fontFamily: 'SF Pro Text');
+
+final TextStyle redirectLabelStyle = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w500,
+    color: hintLabel,
+    fontFamily: 'SF Pro Text');
 class FABWidget {
   static // Button to be used throughout the app
       Widget appButton(String text, Function() onPressed,

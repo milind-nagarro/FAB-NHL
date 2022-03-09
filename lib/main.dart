@@ -8,6 +8,7 @@ void main() {
   runApp(ScreenUtilInit(
     builder: () => GetMaterialApp(
       // home: Welcome(),
+      debugShowCheckedModeBanner: false,
       translations: AppText(),
       locale: const Locale('en_US'),
       // translations will be displayed in that locale
