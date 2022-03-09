@@ -10,13 +10,16 @@ const Map<String, String> labels = {
   'enter_mobile_adha': 'Please enter the mobile number registered with ADHA',
   'mobile_number': 'Mobile Number',
   'next': 'Next',
+  'invalid_mobile_number':
+      'Invalid mobile number, please visit any FAB NHL branch to update your contact details.',
   // signup email screen
   'enter_email': 'Register your email',
   'enter_email_valid': 'Please enter a valid email address',
   'email': 'Email',
   // Verification screen
   'enter_verification': 'Enter the verification code',
-  'verification_sent_msg':'The verification code is sent to your registered mobile number',
-  'otp_expire_msg':'Your code will expire in ',
-  'resend_code':'Resend code'
+  'verification_sent_msg':
+      'The verification code is sent to your registered mobile number',
+  'otp_expire_msg': 'Your code will expire in ',
+  'resend_code': 'Resend code'
 };

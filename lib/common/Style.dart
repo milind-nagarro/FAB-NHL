@@ -60,14 +60,10 @@ class FABWidget {
           Color? textColor,
           Size? minSize,
           Color? highlightColor}) {
-    return TextButton(
+    return ElevatedButton(
       style: FABStyles.appStyleButton(bgColor ?? primaryLabelColor,
           minSize: minSize),
-      onPressed: () {
-        if (onPressed != null) {
-          onPressed();
-        }
-      },
+      onPressed: onPressed,
       child: Text(
         text,
         style: FABStyles.appStyleButtonText(textColor ?? Colors.white),
