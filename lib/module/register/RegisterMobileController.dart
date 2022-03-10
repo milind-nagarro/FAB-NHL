@@ -28,11 +28,15 @@ class RegisterMobileController extends GetxController {
         ? MobileValidationState.valid
         : MobileValidationState.invalid);
     if (isvalidMobile.value == MobileValidationState.valid) {
-      navigateToVerification();
+      nextScreen();
     }
   }
 
+  void nextScreen() {
+    navigateToVerification();
+  }
+
   void navigateToVerification() {
-    Get.toNamed(verification,arguments: [uaeCode+_mobileNumber.toString()]);
+    Get.toNamed(verification, arguments: [uaeCode + _mobileNumber.toString()]);
   }
 }

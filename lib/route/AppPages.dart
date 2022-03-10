@@ -1,3 +1,5 @@
+import 'package:fab_nhl/module/login/LoginScreen.dart';
+import 'package:fab_nhl/module/login/LoginScreenBinder.dart';
 import 'package:fab_nhl/module/register/RegisterMobile.dart';
 import 'package:fab_nhl/module/register/RegisterMobileBinder.dart';
 import 'package:fab_nhl/module/setuppin/SetupConfirmPinBinder.dart';
@@ -14,23 +16,31 @@ class AppPages {
 
   static final routes = [
     GetPage(
-        name: path.welcome, page: () => Welcome(), binding: WelcomeBinder()),
+        name: path.welcome,
+        page: () => const Welcome(),
+        binding: WelcomeBinder()),
     GetPage(
         name: path.registerMobile,
-        page: () => RegisterMobile(true),
+        page: () => const RegisterMobile(true),
         binding: RegisterMobileBinder()),
     GetPage(
         name: path.registerEmail,
-        page: () => RegisterMobile(false),
+        page: () => const RegisterMobile(false),
         binding: RegisterMobileBinder()),
     GetPage(
         name: path.verification,
-        page: () => Verification(),
+        page: () => const Verification(),
         binding: VerificationBinder()),
     GetPage(
         name: path.setupPin,
-        page: () => const SetupConfirmPinPage(isConfirmation: false),
+        page: () => const SetupConfirmPinPage(
+              isConfirmation: false,
+            ),
         binding: SetupConfirmPinBinder()),
+    GetPage(
+        name: path.login,
+        page: () => const LoginScreen(),
+        binding: LoginScreenBinder()),
     GetPage(
         name: path.confirmPin,
         page: () => const SetupConfirmPinPage(isConfirmation: true),

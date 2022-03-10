@@ -11,7 +11,9 @@ class WelcomeController extends GetxController {
   static final String title = welcomeScreenTitles.first;
   final welcomeMessage = title.obs;
 
-  void navigateToLogin() {}
+  void navigateToLogin() {
+    Get.toNamed(path.login);
+  }
 
   void navigateToRegister() {
     Get.toNamed(path.registerMobile);

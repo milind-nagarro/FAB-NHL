@@ -14,10 +14,9 @@ class RegisterMobile extends StatelessWidget {
 
   final bool isMobileVerification;
 
-  static final RegisterMobileController controller = Get.find();
-
   @override
   Widget build(BuildContext context) {
+    final RegisterMobileController controller = Get.find();
     return Scaffold(
         appBar: FABWidget.appTopBar('register'.tr),
         body: SafeArea(
@@ -87,6 +86,7 @@ class RegisterMobile extends StatelessWidget {
 
   // return a function or null to disable next button based on mobile number validation state
   Function()? nextStep(Rx<MobileValidationState> vState) {
+    final RegisterMobileController controller = Get.find();
     if (isMobileVerification) {
       if (controller.isNumberBlank.value) {
         return null;

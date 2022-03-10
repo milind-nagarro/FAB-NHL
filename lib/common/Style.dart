@@ -1,7 +1,7 @@
 import 'package:fab_nhl/common/AppColor.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class FABStyles {
   // Style for buttons throughout the app
@@ -104,7 +104,7 @@ class FABWidget {
           ? TextButton(
               onPressed: backAction,
               child: Text(
-                'Cancel',
+                'cancel'.tr,
                 style: TextStyle(
                     fontFamily: 'SF Pro',
                     fontSize: 16.sp,
