@@ -95,6 +95,7 @@ class OnlyBottomCursor extends StatelessWidget {
       key: const Key("PinputWidget"),
       length: length ?? 4,
       pinAnimationType: PinAnimationType.slide,
+      pinputAutovalidateMode: PinputAutovalidateMode.disabled,
       controller: controller,
       focusNode: focusNode,
       errorText: 'error_pin_match'.tr,

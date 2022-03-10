@@ -1,3 +1,4 @@
+import 'package:fab_nhl/module/login/LoginPinScreen.dart';
 import 'package:fab_nhl/module/login/LoginScreen.dart';
 import 'package:fab_nhl/module/login/LoginScreenBinder.dart';
 import 'package:fab_nhl/module/register/RegisterMobile.dart';
@@ -44,6 +45,10 @@ class AppPages {
     GetPage(
         name: path.confirmPin,
         page: () => const SetupConfirmPinPage(isConfirmation: true),
-        binding: SetupConfirmPinBinder())
+        binding: SetupConfirmPinBinder()),
+    GetPage(
+      name: path.loginPin,
+      page: () => const LoginPinScreen(),
+      binding: LoginScreenBinder()),
   ];
 }
