@@ -16,18 +16,20 @@ class AppPages {
 
   static final routes = [
     GetPage(
-        name: path.welcome, page: () => Welcome(), binding: WelcomeBinder()),
+        name: path.welcome,
+        page: () => const Welcome(),
+        binding: WelcomeBinder()),
     GetPage(
         name: path.registerMobile,
-        page: () => RegisterMobile(true),
+        page: () => const RegisterMobile(true),
         binding: RegisterMobileBinder()),
     GetPage(
         name: path.registerEmail,
-        page: () => RegisterMobile(false),
+        page: () => const RegisterMobile(false),
         binding: RegisterMobileBinder()),
     GetPage(
         name: path.verification,
-        page: () => Verification(),
+        page: () => const Verification(),
         binding: VerificationBinder()),
     GetPage(
         name: path.setupPin,
