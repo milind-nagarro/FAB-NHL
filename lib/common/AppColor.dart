@@ -7,6 +7,7 @@ Color hintLabel = const Color(0XFF1967FD);
 const borderColor = Color.fromRGBO(25, 103, 253, 1);
 const cursorColor = Color.fromRGBO(25, 103, 253, 0.2);
 const darkBlue = Color.fromRGBO(30, 60, 87, 1);
+const errorColor = Color.fromRGBO(255, 30, 40, 0.2);
 const lightGrey = Color.fromRGBO(104, 115, 129, 1);
 Color primaryLabelColor = const Color(0XFF1967FD);
 Color smallTextColor = const Color(0XFF0090FF);

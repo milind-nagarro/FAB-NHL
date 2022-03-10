@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,13 +14,15 @@ class OnlyBottomCursor extends StatelessWidget {
       required this.controller,
       required this.focusNode,
       this.length,
-      this.onChange})
+      this.onChange,
+      this.validator})
       : super(key: key);
 
   final TextEditingController controller;
   final FocusNode focusNode;
   final int? length;
   final Function(String)? onChange;
+  final FormFieldValidator<String>? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +80,17 @@ class OnlyBottomCursor extends StatelessWidget {
       ],
     );
 
+    final errorPinTheme =  PinTheme(
+      width: 44.w,
+      height: 56.h,
+      textStyle: GoogleFonts.poppins(
+        fontSize: 22.sp,
+        color: Colors.red,
+      ),
+      decoration: const BoxDecoration(
+          border: Border(bottom: BorderSide(width: 3, color: errorColor))),
+    );
+
     return Pinput(
       key: const Key("PinputWidget"),
       length: length ?? 4,
@@ -85,12 +100,14 @@ class OnlyBottomCursor extends StatelessWidget {
       errorText: 'error_pin_match'.tr,
       obscureText: true,
       obscuringCharacter: '*',
+      errorPinTheme: errorPinTheme,
       defaultPinTheme: defaultPinTheme,
       showCursor: false,
       focusedPinTheme: focusedPinTheme,
       preFilledWidget: preFilledWidget,
       submittedPinTheme: submittedPinTheme,
       onChanged: onChange,
+      validator: validator,
     );
   }
 }

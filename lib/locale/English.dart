@@ -23,8 +23,15 @@ const Map<String, String> labels = {
   'otp_expire_msg': 'Your code will expire in ',
   'resend_code': 'Resend code',
   'your_otp': 'Your OTP',
-// Setup PIN
+  // Setup PIN
   'set_pin': 'Set PIN',
   'create_memorable_pin': 'Create a memorable PIN',
-  'error_pin_match': 'PIN does not match'
+  'error_pin_match': 'PIN does not match',
+  // Confirm PIN
+  'confirm_pin': 'Confirm PIN',
+  'enter_pin_again': 'Enter your PIN again',
+  'confirm': 'Confirm',
+  'enter_pin': 'Enter a valid PIN',
+  'successful': "Successful",
+  'success_message': "PIN setup successful"
 };

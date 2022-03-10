@@ -29,7 +29,11 @@ class AppPages {
         binding: VerificationBinder()),
     GetPage(
         name: path.setupPin,
-        page: () => const SetupConfirmPinPage(),
+        page: () => const SetupConfirmPinPage(isConfirmation: false),
+        binding: SetupConfirmPinBinder()),
+    GetPage(
+        name: path.confirmPin,
+        page: () => const SetupConfirmPinPage(isConfirmation: true),
         binding: SetupConfirmPinBinder())
   ];
 }
