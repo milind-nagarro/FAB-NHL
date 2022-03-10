@@ -111,7 +111,7 @@ class LoginScreen extends StatelessWidget {
       case MobileValidationState.valid:
         return () {
           FocusManager.instance.primaryFocus?.unfocus();
-          controller.navigateToVerification();
+          controller.nextScreen();
         };
       case MobileValidationState.notChecked:
         return () {

@@ -1,10 +1,15 @@
 import 'package:fab_nhl/module/register/RegisterMobileController.dart';
 import 'package:fab_nhl/route/RoutePaths.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginScreenController extends RegisterMobileController {
   final rememberMeFlag = false.obs;
+
+  var pin = "".obs;
+
+  void onPinTextChanged(String value) {
+    pin(value);
+  }
 
   @override
   void nextScreen() {
@@ -20,7 +25,7 @@ class LoginScreenController extends RegisterMobileController {
   }
 
   void navigateToPinScreen() {
-    debugPrint('navigatetoregister');
+    Get.toNamed(loginPin);
   }
 
   void navigateToRegisterScreen() {
