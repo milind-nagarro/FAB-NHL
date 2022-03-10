@@ -1,4 +1,5 @@
 import 'package:fab_nhl/module/setuppin/SetupConfirmController.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fab_nhl/common/AppColor.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,8 +30,9 @@ class _SetupConfirmPinPageState extends State<SetupConfirmPinPage>
     return Scaffold(
       appBar: FABWidget.appTopBar(
           widget.isConfirmation ? 'confirm_pin'.tr : 'set_pin'.tr,
-          hasCancel: widget.isConfirmation ? false : true,
-          backAction: () {}),
+          hasCancel: widget.isConfirmation ? false : true, backAction: () {
+          handleBackPress();
+      }),
       body: Column(
         children: [
           const Padding(padding: EdgeInsets.fromLTRB(12, 50, 0, 0)),
@@ -43,7 +45,8 @@ class _SetupConfirmPinPageState extends State<SetupConfirmPinPage>
             onChange: (value) => {
               if (!widget.isConfirmation) controller.onPinTextChanged(value)
             },
-            validator: (value) => _validations(value),
+            validator: (value) =>
+                controller.validations(widget.isConfirmation, value),
           )),
           const Spacer(),
           Obx(() => FABWidget.appButton(
@@ -51,46 +54,41 @@ class _SetupConfirmPinPageState extends State<SetupConfirmPinPage>
               bgColor:
                   controller.pin.value.length == 4 ? Colors.blue : Colors.grey,
               minSize: Size(100.w, 50.h),
-              onPressed: () => _onClickListeners())),
+              onPressed: () => controller.onClickListeners(
+                  widget.isConfirmation, textController.text))),
           SizedBox(height: 33.h),
         ],
       ),
     );
   }
 
+  void handleBackPress() {
+    showCupertinoDialog(context: context, builder: (context){
+      return CupertinoAlertDialog(
+        content: Text('pin_cancel_message'.tr),
+        actions: [
+          CupertinoDialogAction(
+              child: Text('yes_cancel'.tr),
+              onPressed: ()
+              {
+                controller.navigateToRegistrationPage();
+              }
+          ),
+          CupertinoDialogAction(
+            child: Text('no_stay_here'.tr),
+            onPressed: (){
+              Navigator.of(context).pop();
+            }
+            ,
+          )
+        ],
+      );
+    });
+  }
+
+
   @override
   bool get wantKeepAlive => true;
-
-  void _onClickListeners() {
-    if (controller.pin.value.length == 4) {
-      if (widget.isConfirmation) {
-        if (controller.pin.value == textController.text) {
-          Get.defaultDialog(
-            titlePadding: EdgeInsets.all(16.r),
-            title: 'successful'.tr,
-            content: Text('success_message'.tr),
-            contentPadding: EdgeInsets.all(16.r),
-          );
-        } else {}
-      } else {
-        controller.navigateToConfirmPin();
-      }
-    } else {
-      Get.defaultDialog(title: 'enter_pin'.tr);
-    }
-  }
-
-  String? _validations(String? value) {
-    if (widget.isConfirmation) {
-      if (value != controller.pin.value) {
-        return 'error_pin_match'.tr;
-      } else {
-        return null;
-      }
-    } else {
-      return null;
-    }
-  }
 }
 
 class SetupConfirmPin extends StatelessWidget {
