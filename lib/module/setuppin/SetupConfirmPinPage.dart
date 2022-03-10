@@ -119,4 +119,7 @@ class SetupConfirmPin extends StatelessWidget {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

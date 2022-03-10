@@ -1,6 +1,8 @@
 import 'package:fab_nhl/route/RoutePaths.dart';
 import 'package:get/get.dart';
 
+import '../../common/utilities/app_constants.dart';
+
 enum MobileValidationState { notChecked, valid, invalid }
 
 class RegisterMobileController extends GetxController {
@@ -31,6 +33,6 @@ class RegisterMobileController extends GetxController {
   }
 
   void navigateToVerification() {
-    Get.toNamed(verification);
+    Get.toNamed(verification,arguments: [uaeCode+_mobileNumber.toString()]);
   }
 }

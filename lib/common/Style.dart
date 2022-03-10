@@ -1,4 +1,5 @@
 import 'package:fab_nhl/common/AppColor.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -30,8 +31,8 @@ class FABStyles {
 // Style for header labels throughout the app
   static TextStyle appStyleHeaderText(Color color) {
     return TextStyle(
-      fontSize: 28.sp,
-      fontFamily: "GraphikSemibold",
+      fontSize: 21.sp,
+      fontFamily: "Graphik",
       fontWeight: FontWeight.w600,
       height: 1.25,
       color: color,
@@ -41,21 +42,21 @@ class FABStyles {
 // Style for input text
   static final TextStyle appStyleInputText = TextStyle(
       fontSize: 19.sp,
-      // fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w500,
       color: inputTextColor,
-      fontFamily: 'SF Pro Text');
+      fontFamily: 'SF Pro');
 
   static final TextStyle subHeaderLabelStyle = TextStyle(
       fontSize: 15.sp,
       fontWeight: FontWeight.w400,
       color: subHeader,
-      fontFamily: 'SF Pro Text');
+      fontFamily: 'SF Pro');
 
   static final TextStyle redirectLabelStyle = TextStyle(
       fontSize: 14.sp,
       fontWeight: FontWeight.w500,
       color: hintLabel,
-      fontFamily: 'SF Pro Text');
+      fontFamily: 'SF Pro');
 
   static final appThemeData = ThemeData(
     // primarySwatch: Colors.green,
@@ -94,6 +95,7 @@ class FABWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
+      centerTitle: true,
       iconTheme: hasCancel
           ? null
           : IconThemeData(color: primaryLabelColor, size: 25.r),
@@ -103,14 +105,17 @@ class FABWidget {
               onPressed: backAction,
               child: Text(
                 'Cancel',
-                style: TextStyle(fontFamily: 'SF Pro Text', fontSize: 15.w),
+                style: TextStyle(
+                    fontFamily: 'SF Pro',
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500),
               ),
             )
           : null,
       title: Text(
         title,
         style: TextStyle(
-            color: headerTextColor, fontFamily: 'SF Pro Text', fontSize: 16.sp),
+            color: headerTextColor, fontFamily: 'SF Pro', fontSize: 16.sp),
       ),
     );
   }
