@@ -26,5 +26,13 @@ const Map<String, String> labels = {
 // Setup PIN
   'set_pin': 'Set PIN',
   'create_memorable_pin': 'Create a memorable PIN',
-  'error_pin_match': 'PIN does not match'
+  'error_pin_match': 'PIN does not match',
+  // top nav
+  'cancel': 'Cancel',
+  // login screen
+  'welcome_back': 'Welcome back!',
+  'login_header': 'Login to continue',
+  'not_registered': 'Mobile number not registered',
+  'remember_me': 'Remember me',
+  'not_yet_registered': 'Not yet registered?',
 };
