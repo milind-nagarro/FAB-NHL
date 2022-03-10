@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import 'RegisterMobileController.dart';
+import 'register_mobile_controller.dart';
 
 class RegisterMobileBinder extends Bindings {
   @override

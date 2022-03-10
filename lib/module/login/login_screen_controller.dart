@@ -1,4 +1,4 @@
-import 'package:fab_nhl/module/register/RegisterMobileController.dart';
+import 'package:fab_nhl/module/register/register_mobile_controller.dart';
 import 'package:fab_nhl/route/RoutePaths.dart';
 import 'package:get/get.dart';
 

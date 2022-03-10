@@ -5,13 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../common/utilities/app_constants.dart';
-import 'RegisterMobileController.dart';
+import 'register_mobile_controller.dart';
 
 class RegisterMobile extends StatelessWidget {
-  // const RegisterMobile({Key? key}) : super(key: key);
-
-  const RegisterMobile(this.isMobileVerification);
-
+  const RegisterMobile(this.isMobileVerification, {Key? key}) : super(key: key);
+  // this screen can be used for email verification also. flag will differentiate both cases
   final bool isMobileVerification;
 
   @override
@@ -54,7 +52,6 @@ class RegisterMobile extends StatelessWidget {
                           labelText: isMobileVerification
                               ? 'mobile_number'.tr
                               : 'email'.tr,
-                          // labelStyle: FABStyles.appStyleInputText,
                           errorText: (controller.isvalidMobile.value ==
                                   MobileValidationState.invalid)
                               ? 'invalid_mobile_number'.tr

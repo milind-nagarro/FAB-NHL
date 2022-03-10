@@ -1,16 +1,16 @@
 import 'package:fab_nhl/common/AppColor.dart';
 import 'package:fab_nhl/common/Style.dart';
-import 'package:fab_nhl/module/login/LoginScreenController.dart';
+import 'package:fab_nhl/module/login/login_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../common/utilities/app_constants.dart';
-import '../register/RegisterMobileController.dart';
+import '../register/register_mobile_controller.dart';
 
+/// Login Screen widget.
+/// Contains text field to input mobile number and display
 class LoginScreen extends StatelessWidget {
-  // const RegisterMobile({Key? key}) : super(key: key);
-
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -35,18 +35,17 @@ class LoginScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Obx(
+                      // observing controller for validity of mobile number
                       () => TextField(
                         keyboardType: TextInputType.phone,
                         onChanged: (text) {
                           controller.setMobileNumber(text);
                         },
-                        // cursorColor: primaryLabelColor,
                         style: FABStyles.appStyleInputText,
                         decoration: InputDecoration(
                             filled: false,
                             prefixText: uaeCode,
                             labelText: 'mobile_number'.tr,
-                            // labelStyle: FABStyles.appStyleInputText,
                             errorText: (controller.isvalidMobile.value ==
                                     MobileValidationState.invalid)
                                 ? 'not_registered'.tr
@@ -61,6 +60,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   Row(children: [
                     Obx(
+                      // observing controller for remember me to display selected state of checkbox
                       () => Checkbox(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
@@ -89,6 +89,7 @@ class LoginScreen extends StatelessWidget {
                   child: SizedBox(
                     width: 116.w,
                     height: 56.h,
+                    // observing controller for valid mobile number that will decide enable/disable state of next button
                     child: Obx(() => FABWidget.appButton('next'.tr,
                         onPressed: nextStep(controller.isvalidMobile))),
                   ),

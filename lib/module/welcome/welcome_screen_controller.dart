@@ -6,7 +6,7 @@ import 'package:fab_nhl/common/utilities/app_constants.dart';
 
 class WelcomeController extends GetxController {
   AppLanguage _language = AppLanguage.english;
-  String selectedLanguage = "ةيبرعلا";
+  String languageTitle = arabic_label;
   final currentPage = 0.obs;
   static final String title = welcomeScreenTitles.first;
   final welcomeMessage = title.obs;
@@ -22,11 +22,11 @@ class WelcomeController extends GetxController {
   void changeLanguage() {
     if (_language == AppLanguage.english) {
       Get.updateLocale(const Locale('ar'));
-      selectedLanguage = "English";
+      languageTitle = english_label;
       _language = AppLanguage.arabic;
     } else {
       Get.updateLocale(const Locale('en_US'));
-      selectedLanguage = "ةيبرعلا";
+      languageTitle = arabic_label;
       _language = AppLanguage.english;
     }
   }
