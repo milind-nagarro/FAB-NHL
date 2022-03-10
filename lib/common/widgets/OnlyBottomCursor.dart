@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 
-import '../AppColor.dart';
+import '../app_color.dart';
 
 class OnlyBottomCursor extends StatelessWidget {
   const OnlyBottomCursor(
@@ -80,7 +80,7 @@ class OnlyBottomCursor extends StatelessWidget {
       ],
     );
 
-    final errorPinTheme =  PinTheme(
+    final errorPinTheme = PinTheme(
       width: 44.w,
       height: 56.h,
       textStyle: GoogleFonts.poppins(

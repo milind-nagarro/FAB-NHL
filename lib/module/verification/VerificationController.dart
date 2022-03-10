@@ -1,11 +1,11 @@
-import 'package:fab_nhl/route/RoutePaths.dart';
+import 'package:fab_nhl/route/route_paths.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class VerificationController extends GetxController {
   TextEditingController textController = TextEditingController();
   FocusNode focusNode = FocusNode();
-  final  pin = "".obs ;
+  final pin = "".obs;
   dynamic argumentData = Get.arguments;
   late String mobileNumber;
 
@@ -21,6 +21,7 @@ class VerificationController extends GetxController {
 
   void navigateToEmailRegister() {
     Get.toNamed(setupPin);
+    //Get.toNamed(registerEmail);
   }
 
   String formatedTime(int secTime) {
@@ -30,10 +31,11 @@ class VerificationController extends GetxController {
     }
 
     int min = secTime ~/ 60;
-    int sec = (secTime % 60) ;
+    int sec = (secTime % 60);
 
-    String parsedTime =
-        min.toString() + " minute " + getParsedTime(sec.toString()+ " seconds");
+    String parsedTime = min.toString() +
+        " minute " +
+        getParsedTime(sec.toString() + " seconds");
 
     return parsedTime;
   }

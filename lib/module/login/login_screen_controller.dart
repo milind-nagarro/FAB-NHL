@@ -1,6 +1,9 @@
 import 'package:fab_nhl/module/register/register_mobile_controller.dart';
-import 'package:fab_nhl/route/RoutePaths.dart';
+import 'package:fab_nhl/route/route_paths.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+
+import '../../common/utilities/app_constants.dart';
 
 /// Controller for login screen. also helps login pin screen for pin value
 /// Subclassed from RegisterMobileController both handle mobile number validation
@@ -40,5 +43,26 @@ class LoginScreenController extends RegisterMobileController {
   /// navigation to register screen on tap of not yet registered button
   void navigateToRegisterScreen() {
     Get.toNamed(registerMobile);
+  }
+
+  @override
+  Function()? nextStep(ValidationState vState) {
+    if (isValueBlank.value) {
+      return null;
+    }
+    switch (vState) {
+      case ValidationState.invalid:
+        return null;
+      case ValidationState.valid:
+        return () {
+          FocusManager.instance.primaryFocus?.unfocus();
+          nextScreen();
+        };
+      case ValidationState.notChecked:
+        return () {
+          FocusManager.instance.primaryFocus?.unfocus();
+          validatePhone();
+        };
+    }
   }
 }

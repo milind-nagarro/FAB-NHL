@@ -1,6 +1,6 @@
-import 'package:fab_nhl/common/Style.dart';
-import 'package:fab_nhl/locale/AppText.dart';
-import 'package:fab_nhl/route/AppPages.dart';
+import 'package:fab_nhl/common/style.dart';
+import 'package:fab_nhl/locale/app_text.dart';
+import 'package:fab_nhl/route/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -16,7 +16,7 @@ void main() {
       fallbackLocale: const Locale('en_US'),
       theme: FABStyles.appThemeData,
       getPages: AppPages.routes,
-      initialRoute: AppPages.INITIAL,
+      initialRoute: AppPages.initialPath,
     ),
     designSize: const Size(375, 812),
   ));

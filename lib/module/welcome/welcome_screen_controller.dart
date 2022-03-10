@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:fab_nhl/route/RoutePaths.dart' as path;
-import 'package:get/get.dart';
 import 'package:fab_nhl/common/utilities/app_constants.dart';
+import 'package:fab_nhl/route/route_paths.dart' as path;
+import 'package:get/get.dart';
 
 /// Controller for welcome screen
 /// Handles page swipe and (observable) current page state

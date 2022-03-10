@@ -1,5 +1,5 @@
-import 'package:fab_nhl/common/AppColor.dart';
-import 'package:fab_nhl/common/Style.dart';
+import 'package:fab_nhl/common/app_color.dart';
+import 'package:fab_nhl/common/style.dart';
 import 'package:fab_nhl/module/login/login_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,18 +40,18 @@ class LoginScreen extends StatelessWidget {
                       () => TextField(
                         keyboardType: TextInputType.phone,
                         onChanged: (text) {
-                          controller.setMobileNumber(text);
+                          controller.setValue(text);
                         },
                         style: FABStyles.appStyleInputText,
                         decoration: InputDecoration(
                             filled: false,
                             prefixText: uaeCode,
                             labelText: 'mobile_number'.tr,
-                            errorText: (controller.isvalidMobile.value ==
+                            errorText: (controller.isvalid.value ==
                                     MobileValidationState.invalid)
                                 ? 'not_registered'.tr
                                 : null,
-                            suffixIcon: (controller.isvalidMobile.value ==
+                            suffixIcon: (controller.isvalid.value ==
                                     MobileValidationState.invalid)
                                 ? Image.asset('images/error.png')
                                 : null,
@@ -92,34 +92,13 @@ class LoginScreen extends StatelessWidget {
                     height: 56.h,
                     // observing controller for valid mobile number that will decide enable/disable state of next button
                     child: Obx(() => FABWidget.appButton('next'.tr,
-                        onPressed: nextStep(controller.isvalidMobile))),
+                        onPressed:
+                            controller.nextStep(controller.isvalid.value))),
                   ),
                 ),
               ),
             ]),
           ),
         ));
-  }
-
-  // return a function or null to disable next button based on mobile number validation state
-  Function()? nextStep(Rx<MobileValidationState> vState) {
-    final LoginScreenController controller = Get.find();
-    if (controller.isNumberBlank.value) {
-      return null;
-    }
-    switch (vState.value) {
-      case MobileValidationState.invalid:
-        return null;
-      case MobileValidationState.valid:
-        return () {
-          FocusManager.instance.primaryFocus?.unfocus();
-          controller.nextScreen();
-        };
-      case MobileValidationState.notChecked:
-        return () {
-          FocusManager.instance.primaryFocus?.unfocus();
-          controller.validatePhone();
-        };
-    }
   }
 }

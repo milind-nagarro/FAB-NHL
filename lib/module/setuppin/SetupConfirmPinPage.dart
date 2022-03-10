@@ -1,12 +1,12 @@
+import 'package:fab_nhl/common/app_color.dart';
 import 'package:fab_nhl/module/setuppin/SetupConfirmController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fab_nhl/common/AppColor.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../common/AppColor.dart';
-import '../../common/Style.dart';
+import '../../common/app_color.dart';
+import '../../common/style.dart';
 import '../../common/widgets/OnlyBottomCursor.dart';
 
 class SetupConfirmPinPage extends StatefulWidget {
@@ -31,7 +31,7 @@ class _SetupConfirmPinPageState extends State<SetupConfirmPinPage>
       appBar: FABWidget.appTopBar(
           widget.isConfirmation ? 'confirm_pin'.tr : 'set_pin'.tr,
           hasCancel: widget.isConfirmation ? false : true, backAction: () {
-          handleBackPress();
+        handleBackPress();
       }),
       body: Column(
         children: [
@@ -63,29 +63,27 @@ class _SetupConfirmPinPageState extends State<SetupConfirmPinPage>
   }
 
   void handleBackPress() {
-    showCupertinoDialog(context: context, builder: (context){
-      return CupertinoAlertDialog(
-        content: Text('pin_cancel_message'.tr),
-        actions: [
-          CupertinoDialogAction(
-              child: Text('yes_cancel'.tr),
-              onPressed: ()
-              {
-                controller.navigateToRegistrationPage();
-              }
-          ),
-          CupertinoDialogAction(
-            child: Text('no_stay_here'.tr),
-            onPressed: (){
-              Navigator.of(context).pop();
-            }
-            ,
-          )
-        ],
-      );
-    });
+    showCupertinoDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+            content: Text('pin_cancel_message'.tr),
+            actions: [
+              CupertinoDialogAction(
+                  child: Text('yes_cancel'.tr),
+                  onPressed: () {
+                    controller.navigateToRegistrationPage();
+                  }),
+              CupertinoDialogAction(
+                child: Text('no_stay_here'.tr),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
   }
-
 
   @override
   bool get wantKeepAlive => true;

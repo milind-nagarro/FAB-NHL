@@ -5,16 +5,13 @@ import 'package:get/get.dart';
 import '../../common/utilities/app_constants.dart';
 import 'register_controller.dart';
 
-enum MobileValidationState { notChecked, valid, invalid }
-
-class RegisterMobileController extends RegisterController {
-  validatePhone() {
+class RegisterEmailController extends RegisterController {
+  validateEmail() {
     if (value == null) {
       return;
     }
-    isvalid((value!.isNotEmpty && value == '555555555')
-        ? ValidationState.valid
-        : ValidationState.invalid);
+    isvalid(
+        (value!.isNotEmpty) ? ValidationState.valid : ValidationState.invalid);
     if (isvalid.value == ValidationState.valid) {
       nextScreen();
     }
@@ -44,7 +41,7 @@ class RegisterMobileController extends RegisterController {
       case ValidationState.notChecked:
         return () {
           FocusManager.instance.primaryFocus?.unfocus();
-          validatePhone();
+          validateEmail();
         };
     }
   }

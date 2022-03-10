@@ -1,7 +1,7 @@
 import 'package:fab_nhl/module/login/LoginPinScreen.dart';
 import 'package:fab_nhl/module/login/login_screen.dart';
 import 'package:fab_nhl/module/login/login_screen_binder.dart';
-import 'package:fab_nhl/module/register/register_mobile.dart';
+import 'package:fab_nhl/module/register/register.dart';
 import 'package:fab_nhl/module/register/register_mobile_binder.dart';
 import 'package:fab_nhl/module/setuppin/SetupConfirmPinBinder.dart';
 import 'package:fab_nhl/module/setuppin/SetupConfirmPinPage.dart';
@@ -9,11 +9,11 @@ import 'package:fab_nhl/module/verification/Verification.dart';
 import 'package:fab_nhl/module/verification/VerificationBinder.dart';
 import 'package:fab_nhl/module/welcome/welcome_screen.dart';
 import 'package:fab_nhl/module/welcome/welcome_screen_binder.dart';
-import 'package:fab_nhl/route/RoutePaths.dart' as path;
+import 'package:fab_nhl/route/route_paths.dart' as path;
 import 'package:get/get.dart';
 
 class AppPages {
-  static const INITIAL = path.welcome;
+  static const initialPath = path.welcome;
 
   static final routes = [
     GetPage(
@@ -22,15 +22,19 @@ class AppPages {
         binding: WelcomeBinder()),
     GetPage(
         name: path.registerMobile,
-        page: () => const RegisterMobile(true),
+        page: () => const Register(true),
         binding: RegisterMobileBinder()),
     GetPage(
         name: path.registerEmail,
-        page: () => const RegisterMobile(false),
+        page: () => const Register(false),
         binding: RegisterMobileBinder()),
     GetPage(
-        name: path.verification,
-        page: () => const Verification(),
+        name: path.verificationMobile,
+        page: () => const Verification(true),
+        binding: VerificationBinder()),
+    GetPage(
+        name: path.verificationEmail,
+        page: () => const Verification(false),
         binding: VerificationBinder()),
     GetPage(
         name: path.setupPin,
