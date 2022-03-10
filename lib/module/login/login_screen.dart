@@ -9,7 +9,8 @@ import '../../common/utilities/app_constants.dart';
 import '../register/register_mobile_controller.dart';
 
 /// Login Screen widget.
-/// Contains text field to input mobile number and display
+/// Contains text field to input mobile number and display error if invalid number
+/// Controller validates number and next button listens to valid state result
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 

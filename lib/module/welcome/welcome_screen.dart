@@ -9,6 +9,9 @@ import 'package:get/get.dart';
 import 'package:fab_nhl/common/utilities/page_indicator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+/// Widget to display welcome screen
+/// Displays images and title according to pages
+/// Observes controller to handle UI on swipe
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
 

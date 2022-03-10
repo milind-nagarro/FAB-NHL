@@ -4,21 +4,35 @@ import 'package:fab_nhl/route/RoutePaths.dart' as path;
 import 'package:get/get.dart';
 import 'package:fab_nhl/common/utilities/app_constants.dart';
 
+/// Controller for welcome screen
+/// Handles page swipe and (observable) current page state
+/// Stores and updates (observable) titles based on current page
 class WelcomeController extends GetxController {
+  /// stores current language
   AppLanguage _language = AppLanguage.english;
+
+  /// title for language switch button
   String languageTitle = arabic_label;
+
+  /// observable current page index
   final currentPage = 0.obs;
+
   static final String title = welcomeScreenTitles.first;
+
+  /// observable title for display
   final welcomeMessage = title.obs;
 
+  /// navigation to login screen
   void navigateToLogin() {
     Get.toNamed(path.login);
   }
 
+  /// navigation to register screen
   void navigateToRegister() {
     Get.toNamed(path.registerMobile);
   }
 
+  /// language selection action
   void changeLanguage() {
     if (_language == AppLanguage.english) {
       Get.updateLocale(const Locale('ar'));
@@ -31,6 +45,7 @@ class WelcomeController extends GetxController {
     }
   }
 
+  /// setting current page on swipe
   void setPage(int pageNum) {
     currentPage(pageNum);
     welcomeMessage(welcomeScreenTitles[pageNum]);
