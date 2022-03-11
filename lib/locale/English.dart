@@ -49,5 +49,9 @@ const Map<String, String> labels = {
   // Login PIN
   'pin': 'PIN',
   'type_pin_number': 'Type your PIN Number',
-  'forgot__your_pin': 'Forgot your PIN?',
+  'forgot_your_pin': 'Forgot your PIN?',
+  // Verify PIN
+  'error_message': 'Error Message',
+  'exceeded_number_retries': 'You have exceeded the number of maximum tries, Please reset your PIN',
+  'reset_my_pin': "Reset my PIN",
 };

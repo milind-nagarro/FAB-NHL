@@ -13,3 +13,5 @@ Color primaryLabelColor = const Color(0XFF1967FD);
 Color smallTextColor = const Color(0XFF0090FF);
 const inputTextColor = Color(0XFF000000);
 const headerTextColor = Color(0XFF222325);
+const separatorColor = Color.fromRGBO(213, 216, 219, 1);
+const greyBackground = Color.fromRGBO(34, 35, 37, 0.1);

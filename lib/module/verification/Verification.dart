@@ -8,7 +8,7 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
-import '../../common/widgets/OnlyBottomCursor.dart';
+import '../../common/widgets/pin_input_widget.dart';
 import 'VerificationController.dart';
 
 class Verification extends StatelessWidget {
@@ -35,7 +35,7 @@ class Verification extends StatelessWidget {
                     style: FABStyles.subHeaderLabelStyle),
                 SizedBox(height: 16.h),
                 Center(
-                    child: OnlyBottomCursor(
+                    child: PinInputWidget(
                       controller: controller.textController,
                       focusNode: controller.focusNode,
                       length: 6,

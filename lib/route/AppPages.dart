@@ -1,10 +1,10 @@
-import 'package:fab_nhl/module/login/LoginPinScreen.dart';
+import 'package:fab_nhl/module/login/login_pin_screen.dart';
 import 'package:fab_nhl/module/login/LoginScreen.dart';
 import 'package:fab_nhl/module/login/LoginScreenBinder.dart';
 import 'package:fab_nhl/module/register/RegisterMobile.dart';
 import 'package:fab_nhl/module/register/RegisterMobileBinder.dart';
-import 'package:fab_nhl/module/setuppin/SetupConfirmPinBinder.dart';
-import 'package:fab_nhl/module/setuppin/SetupConfirmPinPage.dart';
+import 'package:fab_nhl/module/setuppin/setup_confirm_pin_binder.dart';
+import 'package:fab_nhl/module/setuppin/setup_confirm_pin_page.dart';
 import 'package:fab_nhl/module/verification/Verification.dart';
 import 'package:fab_nhl/module/verification/VerificationBinder.dart';
 import 'package:fab_nhl/module/welcome/Welcome.dart';
@@ -34,7 +34,7 @@ class AppPages {
         binding: VerificationBinder()),
     GetPage(
         name: path.setupPin,
-        page: () => const SetupConfirmPinPage(
+        page: () => SetupConfirmPinPage(
               isConfirmation: false,
             ),
         binding: SetupConfirmPinBinder()),
@@ -44,7 +44,7 @@ class AppPages {
         binding: LoginScreenBinder()),
     GetPage(
         name: path.confirmPin,
-        page: () => const SetupConfirmPinPage(isConfirmation: true),
+        page: () => SetupConfirmPinPage(isConfirmation: true),
         binding: SetupConfirmPinBinder()),
     GetPage(
       name: path.loginPin,

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../common/AppColor.dart';
 import '../../common/Style.dart';
-import '../../common/widgets/OnlyBottomCursor.dart';
+import '../../common/widgets/pin_input_widget.dart';
 import 'LoginScreenController.dart';
 
 class LoginPinScreen extends StatelessWidget {
@@ -34,27 +34,28 @@ class LoginPinScreen extends StatelessWidget {
               ),
               SizedBox(height: 33.h),
               Center(
-                  child: OnlyBottomCursor(
+                 child: PinInputWidget(
                     controller: textController,
                     focusNode: focusNode,
-                    onChange: (value) => {
-                      controller.onPinTextChanged(value)
-                    },
+                    onChange: (value) => {controller.onPinTextChanged(value)},
                     validator: (value) {
-                      return null;
-                    }
-                  )),
+                      return controller.showErrorText.value.isNotEmpty
+                          ? controller.showErrorText.value
+                          : null;
+                    })
+              ),
               SizedBox(height: 16.h),
-              Text('forgot__your_pin'.tr,
+              Text(
+                'forgot_your_pin'.tr,
                 style: const TextStyle(color: borderColor),
               ),
               const Spacer(),
-              Obx(() => FABWidget.appButton(
-                  'next'.tr,
-                  bgColor:
-                  controller.pin.value.length == 4 ? Colors.blue : Colors.grey,
+              Obx(() => FABWidget.appButton('next'.tr,
+                  bgColor: controller.pin.value.length == 4
+                      ? Colors.blue
+                      : Colors.grey,
                   minSize: Size(100.w, 50.h),
-                  onPressed: () => {})),
+                  onPressed: () => {controller.validatePin()})),
               SizedBox(height: 33.h),
             ],
           ),
