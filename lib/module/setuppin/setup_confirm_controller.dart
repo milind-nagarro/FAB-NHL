@@ -1,10 +1,9 @@
+import 'package:fab_nhl/route/route_paths.dart' as path;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:fab_nhl/route/RoutePaths.dart' as path;
 
 class SetupConfirmController extends GetxController {
-
   var pin = "".obs;
 
   void onPinTextChanged(String value) {
@@ -54,21 +53,19 @@ class SetupConfirmController extends GetxController {
 
   void handleBackPress() {
     Get.defaultDialog(
-      content: Text('pin_cancel_message'.tr),
-      contentPadding: EdgeInsets.all(16.r),
-      textConfirm: 'yes_cancel'.tr,
-      textCancel: 'no_stay_here'.tr,
-      onConfirm: () {
-        navigateToRegistrationPage();
-      },
-      onCancel: () {
-        // Do Nothing
-      }
-    );
+        content: Text('pin_cancel_message'.tr),
+        contentPadding: EdgeInsets.all(16.r),
+        textConfirm: 'yes_cancel'.tr,
+        textCancel: 'no_stay_here'.tr,
+        onConfirm: () {
+          navigateToRegistrationPage();
+        },
+        onCancel: () {
+          // Do Nothing
+        });
   }
 
   void navigateToRegistrationPage() {
     Get.until((route) => Get.currentRoute == path.registerMobile);
   }
-
 }

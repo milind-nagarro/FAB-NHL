@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../common/AppColor.dart';
-import '../../common/Style.dart';
+import '../../common/app_color.dart';
+import '../../common/style.dart';
 import '../../common/widgets/pin_input_widget.dart';
-import 'LoginScreenController.dart';
+import 'login_screen_controller.dart';
 
 class LoginPinScreen extends StatelessWidget {
   const LoginPinScreen({Key? key}) : super(key: key);

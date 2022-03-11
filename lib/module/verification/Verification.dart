@@ -1,5 +1,5 @@
-import 'package:fab_nhl/common/AppColor.dart';
-import 'package:fab_nhl/common/Style.dart';
+import 'package:fab_nhl/common/app_color.dart';
+import 'package:fab_nhl/common/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,7 +12,8 @@ import '../../common/widgets/pin_input_widget.dart';
 import 'VerificationController.dart';
 
 class Verification extends StatelessWidget {
-  const Verification({Key? key}) : super(key: key);
+  const Verification(this.isMobile);
+  final bool isMobile;
 
   @override
   Widget build(BuildContext context) {
@@ -41,41 +42,42 @@ class Verification extends StatelessWidget {
                       length: 6,
                       onChange: (value) => {controller.onPinTextChanged(value)},
                     )),
-                SizedBox(height: 16.h),
-                Countdown(
-                  seconds: 180,
-                  build: (BuildContext context, double time) => Text(
-                      'otp_expire_msg'.tr +controller.formatedTime(time.round()),
-                      style: FABStyles.subHeaderLabelStyle,
-                      textAlign: TextAlign.center
-                  ),
-                  interval: const Duration(milliseconds: 1000),
-                  onFinished: () {
-                    print('Timer is done!');
-                  },
+                    SizedBox(height: 16.h),
+                    Countdown(
+                      seconds: 180,
+                      build: (BuildContext context, double time) => Text(
+                          'otp_expire_msg'.tr +
+                              controller.formatedTime(time.round()),
+                          style: FABStyles.subHeaderLabelStyle,
+                          textAlign: TextAlign.center),
+                      interval: const Duration(milliseconds: 1000),
+                      onFinished: () {
+                        print('Timer is done!');
+                      },
+                    ),
+                    SizedBox(height: 16.h),
+                    SizedBox(
+                        width: double.infinity,
+                        child: Text('resend_code'.tr,
+                            style: FABStyles.redirectLabelStyle,
+                            textAlign: TextAlign.center)),
+                  ],
                 ),
-                SizedBox(height: 16.h),
-                SizedBox(
-                    width: double.infinity,
-                    child: Text('resend_code'.tr,
-                        style: FABStyles.redirectLabelStyle,
-                        textAlign: TextAlign.center)),
-              ],
+                Positioned(
+                  child: Align(
+                    alignment: FractionalOffset.bottomCenter,
+                    child: SizedBox(
+                        width: 116.w,
+                        height: 56.h,
+                        child: Obx(() => FABWidget.appButton('next'.tr,
+                            onPressed: (controller.pin.value.length == 6)
+                                ? controller.navigateToEmailRegister
+                                : null))),
+                  ),
+                ),
+              ]),
             ),
-            Positioned(
-              child: Align(
-                alignment: FractionalOffset.bottomCenter,
-                child: SizedBox(
-                    width: 116.w,
-                    height: 56.h,
-                    child: Obx(()=>FABWidget.appButton('next'.tr,
-                        onPressed: (controller.pin.value.length == 6) ?
-                        controller.navigateToEmailRegister : null))) ,
-              ),
-            ),
-          ]),
-        ),
-      ),
-    ));
+          ),
+        ));
   }
 }

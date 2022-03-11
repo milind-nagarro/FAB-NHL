@@ -1,16 +1,19 @@
 import 'dart:ui';
 
-import 'package:fab_nhl/common/AppColor.dart';
-import 'package:fab_nhl/common/Style.dart';
+import 'package:fab_nhl/common/app_color.dart';
+import 'package:fab_nhl/common/style.dart';
 import 'package:fab_nhl/common/utilities/app_constants.dart';
-import 'package:fab_nhl/module/welcome/WelcomeController.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:fab_nhl/common/utilities/page_indicator.dart';
+import 'package:fab_nhl/module/welcome/welcome_screen_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
-class Welcome extends StatelessWidget {
-  const Welcome({Key? key}) : super(key: key);
+/// Widget to display welcome screen
+/// Displays images and title according to pages
+/// Observes controller to handle UI on swipe
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +65,7 @@ class Welcome extends StatelessWidget {
                 ),
                 onPressed: controller.changeLanguage,
                 child: Text(
-                  controller.selectedLanguage,
+                  controller.languageTitle,
                   style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,

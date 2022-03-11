@@ -4,5 +4,6 @@ const String setupPin = '/setup_pin';
 const String confirmPin = '/confirm_pin';
 const String loginPin = '/login_pin';
 const String registerEmail = '/register_email';
-const String verification = '/verification';
+const String verificationMobile = '/verification_mobile';
+const String verificationEmail = '/verification_email';
 const String login = '/login_screen';

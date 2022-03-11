@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 
-import '../AppColor.dart';
+import '../app_color.dart';
 
 ///
 /// Custom widget to handle PIN input on different pages
@@ -83,7 +83,7 @@ class PinInputWidget extends StatelessWidget {
       ],
     );
 
-    final errorPinTheme =  PinTheme(
+    final errorPinTheme = PinTheme(
       width: 44.w,
       height: 56.h,
       textStyle: GoogleFonts.poppins(

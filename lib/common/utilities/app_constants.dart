@@ -8,4 +8,7 @@ enum AppLanguage {
   english,
 }
 
-const String uaeCode = '+971 ';
+const uaeCode = '+971 ';
+const arabic_label = 'ةيبرعلا';
+const english_label = 'English';
+enum ValidationState { notChecked, valid, invalid }

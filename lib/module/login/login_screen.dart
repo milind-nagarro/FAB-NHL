@@ -1,16 +1,17 @@
-import 'package:fab_nhl/common/AppColor.dart';
-import 'package:fab_nhl/common/Style.dart';
-import 'package:fab_nhl/module/login/LoginScreenController.dart';
+import 'package:fab_nhl/common/app_color.dart';
+import 'package:fab_nhl/common/style.dart';
+import 'package:fab_nhl/module/login/login_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../common/utilities/app_constants.dart';
-import '../register/RegisterMobileController.dart';
+import '../register/register_mobile_controller.dart';
 
+/// Login Screen widget.
+/// Contains text field to input mobile number and display error if invalid number
+/// Controller validates number and next button listens to valid state result
 class LoginScreen extends StatelessWidget {
-  // const RegisterMobile({Key? key}) : super(key: key);
-
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -35,23 +36,22 @@ class LoginScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Obx(
+                      // observing controller for validity of mobile number
                       () => TextField(
                         keyboardType: TextInputType.phone,
                         onChanged: (text) {
-                          controller.setMobileNumber(text);
+                          controller.setValue(text);
                         },
-                        // cursorColor: primaryLabelColor,
                         style: FABStyles.appStyleInputText,
                         decoration: InputDecoration(
                             filled: false,
                             prefixText: uaeCode,
                             labelText: 'mobile_number'.tr,
-                            // labelStyle: FABStyles.appStyleInputText,
-                            errorText: (controller.isvalidMobile.value ==
+                            errorText: (controller.isvalid.value ==
                                     MobileValidationState.invalid)
                                 ? 'not_registered'.tr
                                 : null,
-                            suffixIcon: (controller.isvalidMobile.value ==
+                            suffixIcon: (controller.isvalid.value ==
                                     MobileValidationState.invalid)
                                 ? Image.asset('images/error.png')
                                 : null,
@@ -61,6 +61,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   Row(children: [
                     Obx(
+                      // observing controller for remember me to display selected state of checkbox
                       () => Checkbox(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
@@ -89,35 +90,15 @@ class LoginScreen extends StatelessWidget {
                   child: SizedBox(
                     width: 116.w,
                     height: 56.h,
+                    // observing controller for valid mobile number that will decide enable/disable state of next button
                     child: Obx(() => FABWidget.appButton('next'.tr,
-                        onPressed: nextStep(controller.isvalidMobile))),
+                        onPressed:
+                            controller.nextStep(controller.isvalid.value))),
                   ),
                 ),
               ),
             ]),
           ),
         ));
-  }
-
-  // return a function or null to disable next button based on mobile number validation state
-  Function()? nextStep(Rx<MobileValidationState> vState) {
-    final LoginScreenController controller = Get.find();
-    if (controller.isNumberBlank.value) {
-      return null;
-    }
-    switch (vState.value) {
-      case MobileValidationState.invalid:
-        return null;
-      case MobileValidationState.valid:
-        return () {
-          FocusManager.instance.primaryFocus?.unfocus();
-          controller.nextScreen();
-        };
-      case MobileValidationState.notChecked:
-        return () {
-          FocusManager.instance.primaryFocus?.unfocus();
-          controller.validatePhone();
-        };
-    }
   }
 }

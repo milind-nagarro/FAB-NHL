@@ -43,7 +43,8 @@ const Map<String, String> labels = {
   'successful': "Successful",
   'error_title': "Error",
   'success_message': "PIN setup successful",
-  'pin_cancel_message': "Are you sure you want to cancel? If you cancel you will lose the information you have entered so far",
+  'pin_cancel_message':
+      "Are you sure you want to cancel? If you cancel you will lose the information you have entered so far",
   'yes_cancel': 'Yes, Cancel',
   'no_stay_here': 'No, Stay here',
   // Login PIN

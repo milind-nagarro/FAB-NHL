@@ -1,12 +1,11 @@
 import 'package:fab_nhl/module/setuppin/setup_confirm_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fab_nhl/common/AppColor.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../common/AppColor.dart';
 import '../../common/Style.dart';
+import '../../common/app_color.dart';
 import '../../common/widgets/pin_input_widget.dart';
 
 ///

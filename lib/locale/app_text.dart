@@ -1,5 +1,5 @@
-import 'package:fab_nhl/locale/Arabic.dart' as arabic;
-import 'package:fab_nhl/locale/English.dart' as english;
+import 'package:fab_nhl/locale/arabic.dart' as arabic;
+import 'package:fab_nhl/locale/english.dart' as english;
 import 'package:get/get.dart';
 
 class AppText extends Translations {
