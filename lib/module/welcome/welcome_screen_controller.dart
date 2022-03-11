@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:fab_nhl/common/storage/local_storage.dart';
 import 'package:fab_nhl/common/utilities/app_constants.dart';
 import 'package:fab_nhl/route/route_paths.dart' as path;
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 /// Controller for welcome screen
@@ -23,8 +25,16 @@ class WelcomeController extends GetxController {
   final welcomeMessage = title.obs;
 
   /// navigation to login screen
-  void navigateToLogin() {
-    Get.toNamed(path.login);
+  void navigateToLogin() async {
+    var userInfo = await LocalStorage.getUserInfo();
+    await LocalStorage.removeUserInfo();
+    userInfo = await LocalStorage.getUserInfo();
+    // if user info is stored we go to pin screen, if not to login screen
+    if (userInfo != null) {
+      Get.toNamed(path.loginPin);
+    } else {
+      Get.toNamed(path.login);
+    }
   }
 
   /// navigation to register screen

@@ -77,10 +77,9 @@ class LoginScreen extends StatelessWidget {
                       child: Text('remember_me'.tr),
                     ),
                     const Spacer(),
-                    TextButton(
-                      onPressed: () => {controller.navigateToRegisterScreen()},
-                      child: Text('not_yet_registered'.tr),
-                    ),
+                    FABWidget.smallTextButton('not_yet_registered'.tr,
+                        onPressed: () =>
+                            {controller.navigateToRegisterScreen()}),
                   ]),
                 ],
               ),

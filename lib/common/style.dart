@@ -119,4 +119,8 @@ class FABWidget {
       ),
     );
   }
+
+  static Widget smallTextButton(String title, {Function()? onPressed}) {
+    return TextButton(onPressed: onPressed, child: Text(title));
+  }
 }
