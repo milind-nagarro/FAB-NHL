@@ -38,6 +38,7 @@ class SetupConfirmController extends GetxController {
     }
   }
 
+  // Check if the pin entered is the same as in setup pin
   String? validations(bool isConfirmation, String? value) {
     if (isConfirmation) {
       if (value != pin.value) {

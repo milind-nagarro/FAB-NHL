@@ -8,8 +8,11 @@ import 'package:pinput/pinput.dart';
 
 import '../app_color.dart';
 
-class OnlyBottomCursor extends StatelessWidget {
-  const OnlyBottomCursor(
+///
+/// Custom widget to handle PIN input on different pages
+///
+class PinInputWidget extends StatelessWidget {
+  const PinInputWidget(
       {Key? key,
       required this.controller,
       required this.focusNode,
@@ -92,10 +95,10 @@ class OnlyBottomCursor extends StatelessWidget {
     );
 
     return Pinput(
-      key: const Key("PinputWidget"),
+      key: key,
       length: length ?? 4,
       pinAnimationType: PinAnimationType.slide,
-      pinputAutovalidateMode: PinputAutovalidateMode.disabled,
+      pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
       controller: controller,
       focusNode: focusNode,
       errorText: 'error_pin_match'.tr,

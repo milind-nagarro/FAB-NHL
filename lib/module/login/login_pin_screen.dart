@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../common/app_color.dart';
 import '../../common/style.dart';
-import '../../common/widgets/OnlyBottomCursor.dart';
+import '../../common/widgets/pin_input_widget.dart';
 import 'login_screen_controller.dart';
 
 class LoginPinScreen extends StatelessWidget {
@@ -34,16 +34,19 @@ class LoginPinScreen extends StatelessWidget {
               ),
               SizedBox(height: 33.h),
               Center(
-                  child: OnlyBottomCursor(
-                      controller: textController,
-                      focusNode: focusNode,
-                      onChange: (value) => {controller.onPinTextChanged(value)},
-                      validator: (value) {
-                        return null;
-                      })),
+                 child: PinInputWidget(
+                    controller: textController,
+                    focusNode: focusNode,
+                    onChange: (value) => {controller.onPinTextChanged(value)},
+                    validator: (value) {
+                      return controller.showErrorText.value.isNotEmpty
+                          ? controller.showErrorText.value
+                          : null;
+                    })
+              ),
               SizedBox(height: 16.h),
               Text(
-                'forgot__your_pin'.tr,
+                'forgot_your_pin'.tr,
                 style: const TextStyle(color: borderColor),
               ),
               const Spacer(),
@@ -52,7 +55,7 @@ class LoginPinScreen extends StatelessWidget {
                       ? Colors.blue
                       : Colors.grey,
                   minSize: Size(100.w, 50.h),
-                  onPressed: () => {})),
+                  onPressed: () => {controller.validatePin()})),
               SizedBox(height: 33.h),
             ],
           ),

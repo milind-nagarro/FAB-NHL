@@ -95,6 +95,8 @@ flutter:
     - images/error.png
     - images/2.0x/error.png
     - images/3.0x/error.png
+    - images/error_red.png
+    - images/black_cross.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
