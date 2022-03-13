@@ -1,3 +1,4 @@
+import 'package:fab_nhl/module/verification/verification_controller.dart';
 import 'package:fab_nhl/route/route_paths.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -21,8 +22,14 @@ class RegisterEmailController extends RegisterController {
     navigateToVerification();
   }
 
+  @override
+  void onBackPress() {
+    Get.until((route) => Get.currentRoute == registerMobile);
+  }
+
   void navigateToVerification() {
-    Get.toNamed(verificationMobile, arguments: [uaeCode + value.toString()]);
+    Get.delete<VerificationController>(force: true);
+    Get.toNamed(verificationEmail, arguments: [value.toString(), false]);
   }
 
   @override

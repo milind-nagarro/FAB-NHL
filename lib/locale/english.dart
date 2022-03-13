@@ -18,8 +18,10 @@ const Map<String, String> labels = {
   'email': 'Email',
   // Verification screen
   'enter_verification': 'Enter the verification code',
-  'verification_sent_msg':
+  'verification_sent_msg_mobile':
       'The verification code is sent to your registered mobile number',
+  'verification_sent_msg_email':
+      'The verification code is sent to your registered email',
   'otp_expire_msg': 'Your code will expire in ',
   'resend_code': 'Resend code',
   'your_otp': 'Your OTP',
@@ -53,6 +55,7 @@ const Map<String, String> labels = {
   'forgot_your_pin': 'Forgot your PIN?',
   // Verify PIN
   'error_message': 'Error Message',
-  'exceeded_number_retries': 'You have exceeded the number of maximum tries, Please reset your PIN',
+  'exceeded_number_retries':
+      'You have exceeded the number of maximum tries, Please reset your PIN',
   'reset_my_pin': "Reset my PIN",
 };

@@ -25,7 +25,8 @@ class RegisterMobileController extends RegisterController {
   }
 
   void navigateToVerification() {
-    Get.toNamed(verificationMobile, arguments: [uaeCode + value.toString()]);
+    Get.toNamed(verificationMobile,
+        arguments: [uaeCode + value.toString(), true]);
   }
 
   @override
@@ -47,5 +48,10 @@ class RegisterMobileController extends RegisterController {
           validatePhone();
         };
     }
+  }
+
+  @override
+  onBackPress() {
+    Get.back();
   }
 }

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import 'VerificationController.dart';
+import 'verification_controller.dart';
 
 class VerificationBinder extends Bindings {
   @override

@@ -9,7 +9,7 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
 import '../../common/widgets/pin_input_widget.dart';
-import 'VerificationController.dart';
+import 'verification_controller.dart';
 
 class Verification extends StatelessWidget {
   const Verification(this.isMobile);
@@ -17,26 +17,36 @@ class Verification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final VerificationController controller = Get.find();
+    print("isMobile  " + isMobile.toString());
+    final VerificationController controller =
+        Get.find<VerificationController>();
 
     return Scaffold(
         appBar: FABWidget.appTopBar('your_otp'.tr),
         body: SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
-        child: Container(
-          child: Stack(children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('enter_verification'.tr,
-                    style: FABStyles.appStyleHeaderText(header)),
-                SizedBox(height: 8.h),
-                Text('verification_sent_msg'.tr+" ("+controller.mobileNumber+")",
-                    style: FABStyles.subHeaderLabelStyle),
-                SizedBox(height: 16.h),
-                Center(
-                    child: PinInputWidget(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
+            child: Container(
+              child: Stack(children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('enter_verification'.tr,
+                        style: FABStyles.appStyleHeaderText(header)),
+                    SizedBox(height: 8.h),
+                    Text(
+                        isMobile
+                            ? 'verification_sent_msg_mobile'.tr +
+                                " (" +
+                                controller.inputToVerify +
+                                ")"
+                            : 'verification_sent_msg_email'.tr +
+                                " " +
+                                controller.inputToVerify,
+                        style: FABStyles.subHeaderLabelStyle),
+                    SizedBox(height: 16.h),
+                    Center(
+                        child: PinInputWidget(
                       controller: controller.textController,
                       focusNode: controller.focusNode,
                       length: 6,
@@ -44,7 +54,8 @@ class Verification extends StatelessWidget {
                     )),
                     SizedBox(height: 16.h),
                     Countdown(
-                      seconds: 180,
+                      controller: controller.countdownController,
+                      seconds: controller.otpValidDuration,
                       build: (BuildContext context, double time) => Text(
                           'otp_expire_msg'.tr +
                               controller.formatedTime(time.round()),
@@ -52,15 +63,19 @@ class Verification extends StatelessWidget {
                           textAlign: TextAlign.center),
                       interval: const Duration(milliseconds: 1000),
                       onFinished: () {
+                        controller.isExpired(true);
                         print('Timer is done!');
                       },
                     ),
                     SizedBox(height: 16.h),
                     SizedBox(
                         width: double.infinity,
-                        child: Text('resend_code'.tr,
-                            style: FABStyles.redirectLabelStyle,
-                            textAlign: TextAlign.center)),
+                        child: GestureDetector(
+                          onTap: controller.resetTimer,
+                          child: Text('resend_code'.tr,
+                              style: FABStyles.redirectLabelStyle,
+                              textAlign: TextAlign.center),
+                        )),
                   ],
                 ),
                 Positioned(
@@ -70,7 +85,8 @@ class Verification extends StatelessWidget {
                         width: 116.w,
                         height: 56.h,
                         child: Obx(() => FABWidget.appButton('next'.tr,
-                            onPressed: (controller.pin.value.length == 6)
+                            onPressed: (controller.pin.value.length == 6 &&
+                                    !controller.isExpired.value)
                                 ? controller.navigateToEmailRegister
                                 : null))),
                   ),

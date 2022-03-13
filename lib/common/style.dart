@@ -1,7 +1,6 @@
 import 'package:fab_nhl/common/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class FABStyles {
   // Style for buttons throughout the app
@@ -99,17 +98,11 @@ class FABWidget {
       iconTheme: hasCancel
           ? null
           : IconThemeData(color: primaryLabelColor, size: 25.r),
-      leadingWidth: hasCancel ? 80.w : null,
+      // leadingWidth: hasCancel ? 80.w : null,
       leading: hasCancel
-          ? TextButton(
+          ? BackButton(
               onPressed: backAction,
-              child: Text(
-                'cancel'.tr,
-                style: TextStyle(
-                    fontFamily: 'SF Pro',
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500),
-              ),
+              color: borderColor,
             )
           : null,
       title: Text(

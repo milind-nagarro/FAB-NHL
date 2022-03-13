@@ -106,10 +106,10 @@ class LoginScreenController extends RegisterMobileController {
                 width: double.infinity,
                 child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text('error_message'.tr,
-                          style: TextStyle(fontSize: 15.sp)),
-                    )),
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text('error_message'.tr,
+                      style: TextStyle(fontSize: 15.sp)),
+                )),
               ),
               Positioned(
                   top: 13,
@@ -152,13 +152,13 @@ class LoginScreenController extends RegisterMobileController {
               color: Colors.white,
               child: Center(
                   child: Text(
-                    'exceeded_number_retries'.tr,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )),
+                'exceeded_number_retries'.tr,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
             ),
             SizedBox(
               height: 8.h,

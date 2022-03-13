@@ -14,6 +14,8 @@ abstract class RegisterController extends GetxController {
 
   Function()? nextStep(ValidationState vState);
 
+  onBackPress();
+
   setValue(String updatedValue) {
     isValueBlank(updatedValue.isEmpty);
     value = updatedValue;
