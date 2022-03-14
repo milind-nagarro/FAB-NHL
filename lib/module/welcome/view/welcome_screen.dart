@@ -4,8 +4,11 @@ import 'package:fab_nhl/common/app_color.dart';
 import 'package:fab_nhl/common/style.dart';
 import 'package:fab_nhl/common/utilities/app_constants.dart';
 import 'package:fab_nhl/common/utilities/page_indicator.dart';
+import 'package:fab_nhl/module/welcome/cubit/welcome_cubit.dart';
+import 'package:fab_nhl/module/welcome/model/welcome_model.dart';
 import 'package:fab_nhl/module/welcome/welcome_screen_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -48,48 +51,47 @@ class WelcomeScreen extends StatelessWidget {
     );
 
 // top portion for logo and language switch btn
-    Widget topPortion = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(top: 0, bottom: 20.h, right: 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset('images/topLogo.png'),
-              TextButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.transparent,
-                  onPrimary: Colors.grey,
-                  shadowColor: Colors.transparent,
+    Widget topPortion =
+        BlocBuilder<WelcomeCubit, WelcomeState>(builder: (context, state) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 0, bottom: 20.h, right: 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Image.asset('images/topLogo.png'),
+                TextButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.transparent,
+                    onPrimary: Colors.grey,
+                    shadowColor: Colors.transparent,
+                  ),
+                  onPressed: controller.changeLanguage,
+                  child: Text(
+                    controller.languageTitle,
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
                 ),
-                onPressed: controller.changeLanguage,
-                child: Text(
-                  controller.languageTitle,
-                  style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-        Obx(
-          () => Text(
-            controller.welcomeMessage.value.tr,
+          Text(
+            state.message,
             style: FABStyles.appStyleHeaderText(Colors.white),
           ),
-        ),
-        Obx(
-          () => Padding(
+          Padding(
             padding: EdgeInsets.only(top: 15.h),
             child: buildPageIndicator(
-                welcomeScreenTitles.length, controller.currentPage.value),
+                welcomeScreenTitles.length, state.pageNumber),
           ),
-        ),
-      ],
-    );
+        ],
+      );
+    });
 
 // scrollable images
     List<Widget> bgImages = [];
@@ -115,7 +117,7 @@ class WelcomeScreen extends StatelessWidget {
     );
     Widget pageView = PageView(
         onPageChanged: (page) {
-          controller.setPage(page);
+          context.read<WelcomeCubit>().changePage(page);
         },
         controller: pgcontroller,
         children: bgImages);

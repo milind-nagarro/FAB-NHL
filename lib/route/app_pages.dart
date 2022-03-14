@@ -9,7 +9,7 @@ import 'package:fab_nhl/module/setuppin/setup_confirm_pin_binder.dart';
 import 'package:fab_nhl/module/setuppin/setup_confirm_pin_page.dart';
 import 'package:fab_nhl/module/verification/verification.dart';
 import 'package:fab_nhl/module/verification/verification_binder.dart';
-import 'package:fab_nhl/module/welcome/welcome_screen.dart';
+import 'package:fab_nhl/module/welcome/view/welcome_screen.dart';
 import 'package:fab_nhl/module/welcome/welcome_screen_binder.dart';
 import 'package:fab_nhl/route/route_paths.dart' as path;
 import 'package:get/get.dart';
