@@ -22,7 +22,8 @@ class Register extends StatelessWidget {
         : Get.find<RegisterEmailController>();
 
     return Scaffold(
-        appBar: FABWidget.appTopBar('register'.tr),
+        appBar: FABWidget.appTopBar('register'.tr,
+            backAction: controller.onBackPress),
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
