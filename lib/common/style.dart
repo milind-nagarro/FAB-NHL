@@ -1,6 +1,8 @@
 import 'package:fab_nhl/common/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:pinput/pinput.dart';
 
 class FABStyles {
   // Style for buttons throughout the app
@@ -112,4 +114,69 @@ class FABWidget {
       ),
     );
   }
+
+  static PinTheme defaultPinTheme = PinTheme(
+    width: 44.w,
+    height: 56.h,
+    textStyle: GoogleFonts.poppins(
+      fontSize: 22.sp,
+      color: Colors.black,
+    ),
+    decoration: const BoxDecoration(),
+  );
+
+  static PinTheme submittedPinTheme = PinTheme(
+    width: 44.w,
+    height: 56.h,
+    textStyle: GoogleFonts.poppins(
+      fontSize: 22.sp,
+      color: Colors.black,
+    ),
+    decoration: const BoxDecoration(
+        border: Border(bottom: BorderSide(width: 3, color: Colors.black26))),
+  );
+
+  static PinTheme focusedPinTheme = PinTheme(
+    width: 44.w,
+    height: 56.h,
+    textStyle: GoogleFonts.poppins(
+      fontSize: 22.sp,
+      color: borderColor,
+    ),
+    decoration: BoxDecoration(
+      color: cursorColor,
+      shape: BoxShape.rectangle,
+      boxShadow: const [
+        BoxShadow(color: cursorColor, spreadRadius: 0),
+      ],
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(4.r),
+        topRight: Radius.circular(4.r),
+      ),
+    ),
+  );
+
+  static Column preFilledWidget = Column(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+      Container(
+        width: 44.w,
+        height: 2.h,
+        decoration: const BoxDecoration(
+          color: Colors.black26,
+        ),
+      ),
+    ],
+  );
+
+  static PinTheme errorPinTheme = PinTheme(
+    width: 44.w,
+    height: 56.h,
+    textStyle: GoogleFonts.poppins(
+      fontSize: 22.sp,
+      color: Colors.red,
+    ),
+    decoration: const BoxDecoration(
+        border: Border(bottom: BorderSide(width: 3, color: errorColor))),
+  );
 }
