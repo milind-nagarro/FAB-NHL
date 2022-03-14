@@ -11,4 +11,6 @@ enum AppLanguage {
 const uaeCode = '+971 ';
 const arabic_label = 'ةيبرعلا';
 const english_label = 'English';
+const key_user_info = 'user_info';
+
 enum ValidationState { notChecked, valid, invalid }
