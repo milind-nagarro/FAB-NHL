@@ -23,7 +23,7 @@ class Register extends StatelessWidget {
 
     return Scaffold(
         appBar: FABWidget.appTopBar('register'.tr,
-            hasCancel: true, backAction: controller.onBackPress),
+            backAction: controller.onBackPress),
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 32.h),
