@@ -49,6 +49,7 @@ class Verification extends StatelessWidget {
                         child: PinInputWidget(
                       controller: controller.textController,
                       focusNode: controller.focusNode,
+                      errorText: Rx<String?>(null),
                       length: 6,
                       onChange: (value) => {controller.onPinTextChanged(value)},
                     )),

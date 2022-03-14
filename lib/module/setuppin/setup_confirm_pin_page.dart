@@ -38,6 +38,7 @@ class SetupConfirmPinPage extends StatelessWidget {
               child: PinInputWidget(
             controller: textController,
             focusNode: focusNode,
+            errorText: Rx<String?>(null),
             onChange: (value) =>
                 {if (!isConfirmation) controller.onPinTextChanged(value)},
             validator: (value) => controller.validations(isConfirmation, value),
