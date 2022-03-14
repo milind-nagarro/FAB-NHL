@@ -112,7 +112,7 @@ class FABWidget {
                     fontSize: 15.sp),
               ),
             )
-          : null,
+          : BackButton(onPressed: backAction),
       title: Text(
         title,
         style: TextStyle(
