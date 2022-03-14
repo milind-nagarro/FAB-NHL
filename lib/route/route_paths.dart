@@ -7,3 +7,4 @@ const String registerEmail = '/register_email';
 const String verificationMobile = '/verification_mobile';
 const String verificationEmail = '/verification_email';
 const String login = '/login_screen';
+const String unlockPinScreen = '/unlock_pin_screen';

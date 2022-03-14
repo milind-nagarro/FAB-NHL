@@ -1,6 +1,8 @@
 import 'package:fab_nhl/module/login/login_pin_screen.dart';
 import 'package:fab_nhl/module/login/login_screen.dart';
 import 'package:fab_nhl/module/login/login_screen_binder.dart';
+import 'package:fab_nhl/module/login/unlock_pin_binder.dart';
+import 'package:fab_nhl/module/login/unlock_pin_screen.dart';
 import 'package:fab_nhl/module/register/register.dart';
 import 'package:fab_nhl/module/register/register_mobile_binder.dart';
 import 'package:fab_nhl/module/setuppin/setup_confirm_pin_binder.dart';
@@ -54,5 +56,9 @@ class AppPages {
         name: path.loginPin,
         page: () => const LoginPinScreen(),
         binding: LoginScreenBinder()),
+    GetPage(
+        name: path.unlockPinScreen,
+        page: () => const UnlockPinScreen(),
+        binding: UnlockPinScreenBinder()),
   ];
 }
