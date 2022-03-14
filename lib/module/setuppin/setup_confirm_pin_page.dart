@@ -46,8 +46,9 @@ class SetupConfirmPinPage extends StatelessWidget {
           const Spacer(),
           Obx(() => FABWidget.appButton(
               isConfirmation ? 'confirm'.tr : 'next'.tr,
-              bgColor:
-                  controller.pin.value.length == 4 ? Colors.blue : Colors.grey,
+              bgColor: controller.pin.value.length == 4
+                  ? primaryLabelColor
+                  : Colors.grey,
               minSize: Size(100.w, 50.h),
               onPressed: () => controller.onClickListeners(
                   isConfirmation, textController.text))),
