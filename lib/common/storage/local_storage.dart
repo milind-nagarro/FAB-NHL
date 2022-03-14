@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:fab_nhl/common/utilities/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -9,7 +11,7 @@ class LocalStorage {
   /// fetch user info from preferences
   static Future<String?> getUserInfo() async {
     // var userInfo = await SharedPreferenceStorage.getString(key_user_info);
-    var userInfo = await _SecureStorage.read(key_user_info);
+    final userInfo = await _SecureStorage.read(key_user_info);
     return userInfo;
   }
 
@@ -24,11 +26,16 @@ class LocalStorage {
     // await SharedPreferenceStorage.removeValue(key_user_info);
     await _SecureStorage.removeValue(key_user_info);
   }
-}
 
-class Shared {
-  static test() {
-    print("object");
+  /// store language preference
+  static storeLangugePreference(int lang) async {
+    await _SharedPreferenceStorage.storeInt(key_language_preference, lang);
+  }
+
+  /// get language preference
+  static Future<int> getLanguagePreference() async {
+    int? lang = await _SharedPreferenceStorage.getInt(key_language_preference);
+    return lang ?? 0;
   }
 }
 

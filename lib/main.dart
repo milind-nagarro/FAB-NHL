@@ -1,4 +1,5 @@
 import 'package:fab_nhl/common/style.dart';
+import 'package:fab_nhl/common/utilities/app_constants.dart';
 import 'package:fab_nhl/locale/app_text.dart';
 import 'package:fab_nhl/route/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,15 @@ import 'module/welcome/cubit/welcome_cubit.dart';
 
 void main() {
   runApp(ScreenUtilInit(
-    builder: () => BlocProvider(
-      create: (_) => WelcomeCubit(),
+    builder: () => MultiBlocProvider(
+      providers: [
+        BlocProvider<WelcomeCubit>(
+          create: (BuildContext context) => WelcomeCubit(),
+        ),
+        BlocProvider<LanguageCubit>(
+          create: (BuildContext context) => LanguageCubit(AppLanguage.english),
+        ),
+      ],
       child: GetMaterialApp(
         // home: Welcome(),
         debugShowCheckedModeBanner: false,

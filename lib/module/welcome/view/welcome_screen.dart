@@ -5,7 +5,7 @@ import 'package:fab_nhl/common/style.dart';
 import 'package:fab_nhl/common/utilities/app_constants.dart';
 import 'package:fab_nhl/common/utilities/page_indicator.dart';
 import 'package:fab_nhl/module/welcome/cubit/welcome_cubit.dart';
-import 'package:fab_nhl/module/welcome/model/welcome_model.dart';
+import 'package:fab_nhl/module/welcome/state/welcome_state.dart';
 import 'package:fab_nhl/module/welcome/welcome_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -63,25 +63,27 @@ class WelcomeScreen extends StatelessWidget {
               children: [
                 Image.asset('images/topLogo.png'),
                 TextButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.transparent,
-                    onPrimary: Colors.grey,
-                    shadowColor: Colors.transparent,
-                  ),
-                  onPressed: controller.changeLanguage,
-                  child: Text(
-                    controller.languageTitle,
-                    style: TextStyle(
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                      onPrimary: Colors.grey,
+                      shadowColor: Colors.transparent,
+                    ),
+                    onPressed: context.read<LanguageCubit>().changeLanguage,
+                    child: BlocBuilder<LanguageCubit, LanguageState>(
+                        builder: (context, state) {
+                      return Text(
+                        state.nextLanguageTitle,
+                        style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      );
+                    })),
               ],
             ),
           ),
           Text(
-            state.message,
+            state.message.tr,
             style: FABStyles.appStyleHeaderText(Colors.white),
           ),
           Padding(
@@ -141,6 +143,12 @@ class WelcomeScreen extends StatelessWidget {
       ],
     );
 
-    return Scaffold(body: stack);
+    return (BlocListener<LanguageCubit, LanguageState>(
+      listener: (context, state) {
+        Get.updateLocale(
+            Locale(state.language == AppLanguage.english ? 'en_US' : 'ar'));
+      },
+      child: Scaffold(body: stack),
+    ));
   }
 }
