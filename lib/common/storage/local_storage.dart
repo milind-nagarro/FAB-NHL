@@ -9,25 +9,31 @@ class LocalStorage {
   /// fetch user info from preferences
   static Future<String?> getUserInfo() async {
     // var userInfo = await SharedPreferenceStorage.getString(key_user_info);
-    var userInfo = await SecureStorage.read(key_user_info);
+    var userInfo = await _SecureStorage.read(key_user_info);
     return userInfo;
   }
 
   /// store user info (in form of json string)
   static storeUserInfo(String json) async {
-    await SecureStorage.store(key_user_info, json);
+    await _SecureStorage.store(key_user_info, json);
     // await SharedPreferenceStorage.storeString(key_user_info, json);
   }
 
   /// remove user info from local storage
   static removeUserInfo() async {
     // await SharedPreferenceStorage.removeValue(key_user_info);
-    await SecureStorage.removeValue(key_user_info);
+    await _SecureStorage.removeValue(key_user_info);
+  }
+}
+
+class Shared {
+  static test() {
+    print("object");
   }
 }
 
 /// Static methods for storing and retreiving values from sharedpreferences/userdefaults
-class SharedPreferenceStorage {
+class _SharedPreferenceStorage {
   /// Shared Preferences object
   static final Future<SharedPreferences> _prefs =
       SharedPreferences.getInstance();
@@ -94,7 +100,7 @@ class SharedPreferenceStorage {
 }
 
 /// Static methods for storing and retreiving values from secure storage
-class SecureStorage {
+class _SecureStorage {
   /// secure storage object
   static const storage = FlutterSecureStorage();
 

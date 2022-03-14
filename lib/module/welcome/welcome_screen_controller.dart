@@ -27,8 +27,6 @@ class WelcomeController extends GetxController {
   /// navigation to login screen
   void navigateToLogin() async {
     var userInfo = await LocalStorage.getUserInfo();
-    await LocalStorage.removeUserInfo();
-    userInfo = await LocalStorage.getUserInfo();
     // if user info is stored we go to pin screen, if not to login screen
     if (userInfo != null) {
       Get.toNamed(path.loginPin);
