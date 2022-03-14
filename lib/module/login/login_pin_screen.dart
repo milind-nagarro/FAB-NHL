@@ -37,12 +37,9 @@ class LoginPinScreen extends StatelessWidget {
                   child: PinInputWidget(
                       controller: textController,
                       focusNode: focusNode,
+                      errorText: controller.showErrorText,
                       onChange: (value) => {controller.onPinTextChanged(value)},
-                      validator: (value) {
-                        return controller.showErrorText.value.isNotEmpty
-                            ? controller.showErrorText.value
-                            : null;
-                      })),
+                      validator: (value) {})),
               SizedBox(height: 16.h),
               Text(
                 'forgot_your_pin'.tr,
