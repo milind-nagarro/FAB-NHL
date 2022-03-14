@@ -16,6 +16,7 @@ class PinInputWidget extends StatelessWidget {
       {Key? key,
       required this.controller,
       required this.focusNode,
+      required this.errorText,
       this.length,
       this.onChange,
       this.validator})
@@ -26,6 +27,7 @@ class PinInputWidget extends StatelessWidget {
   final int? length;
   final Function(String)? onChange;
   final FormFieldValidator<String>? validator;
+  final Rx<String?> errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -94,24 +96,28 @@ class PinInputWidget extends StatelessWidget {
           border: Border(bottom: BorderSide(width: 3, color: errorColor))),
     );
 
-    return Pinput(
-      key: key,
-      length: length ?? 4,
-      pinAnimationType: PinAnimationType.slide,
-      pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
-      controller: controller,
-      focusNode: focusNode,
-      errorText: 'error_pin_match'.tr,
-      obscureText: true,
-      obscuringCharacter: '*',
-      errorPinTheme: errorPinTheme,
-      defaultPinTheme: defaultPinTheme,
-      showCursor: false,
-      focusedPinTheme: focusedPinTheme,
-      preFilledWidget: preFilledWidget,
-      submittedPinTheme: submittedPinTheme,
-      onChanged: onChange,
-      validator: validator,
+    return Obx(
+      () => Pinput(
+        key: key,
+        length: length ?? 4,
+        pinAnimationType: PinAnimationType.slide,
+        pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+        controller: controller,
+        focusNode: focusNode,
+        errorText: /*'error_pin_match'.tr*/errorText.value,
+        forceErrorState: errorText.value != null &&
+            errorText.value!.isNotEmpty? true : false,
+        obscureText: true,
+        obscuringCharacter: '*',
+        errorPinTheme: errorPinTheme,
+        defaultPinTheme: defaultPinTheme,
+        showCursor: false,
+        focusedPinTheme: focusedPinTheme,
+        preFilledWidget: preFilledWidget,
+        submittedPinTheme: submittedPinTheme,
+        onChanged: onChange,
+        validator: validator,
+      ),
     );
   }
 }

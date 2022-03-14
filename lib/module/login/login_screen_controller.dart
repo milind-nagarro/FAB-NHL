@@ -19,7 +19,7 @@ class LoginScreenController extends RegisterMobileController {
   var pin = "".obs;
 
   var errorPinCount = 3;
-  var showErrorText = "".obs;
+  var showErrorText = Rx<String?>(null);
 
   /// update pin on text change
   void onPinTextChanged(String value) {
@@ -73,20 +73,24 @@ class LoginScreenController extends RegisterMobileController {
     }
   }
 
+  /// Validate PIN entered by the user and show error if retries are exceeded
   void validatePin() {
-    showErrorPinBottomSheet();
-    return;
-    if (errorPinCount == 0) {}
+    if (errorPinCount == 0) {
+      showErrorPinBottomSheet();
+      return;
+    }
 
     if (pin.value != "1234") {
       errorPinCount--;
       showErrorText('invalid_pin_number'.tr);
+      print('Show error text value ${showErrorText.value}');
     } else {
-      showErrorText('');
+      showErrorText(null);
       // Move to the next screen
     }
   }
 
+  /// Error bottom sheet when exceeding maximum number of retries
   void showErrorPinBottomSheet() {
     Get.bottomSheet(
       Container(

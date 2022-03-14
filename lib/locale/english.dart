@@ -53,6 +53,7 @@ const Map<String, String> labels = {
   'pin': 'PIN',
   'type_pin_number': 'Type your PIN Number',
   'forgot_your_pin': 'Forgot your PIN?',
+  'invalid_pin_number': 'Invalid PIN number',
   // Verify PIN
   'error_message': 'Error Message',
   'exceeded_number_retries':
