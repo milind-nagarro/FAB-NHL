@@ -15,3 +15,4 @@ const key_user_info = 'user_info';
 const key_language_preference = 'language_preference';
 
 enum ValidationState { notChecked, valid, invalid }
+enum LoginStates { notChecked, checking, authenticated, unauthenticated }
