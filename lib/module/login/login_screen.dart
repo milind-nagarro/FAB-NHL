@@ -1,6 +1,7 @@
 import 'package:fab_nhl/common/app_color.dart';
 import 'package:fab_nhl/common/style.dart';
 import 'package:fab_nhl/module/login/bloc/login_bloc.dart';
+import 'package:fab_nhl/module/login/cubit/remember_me_cubit.dart';
 import 'package:fab_nhl/module/login/login_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,14 +13,22 @@ import '../../common/utilities/app_constants.dart';
 /// Login Screen widget.
 /// Contains text field to input mobile number and display error if invalid number
 /// used bloc to validate number and navigation to next screen
+/// also uses cubit for remember me toggle
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final LoginScreenController controller = Get.find();
-    return BlocProvider(
-      create: (BuildContext context) => LoginBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (BuildContext context) => LoginBloc(),
+        ),
+        BlocProvider(
+          create: (context) => RememberMeCubit(),
+        ),
+      ],
       child: Scaffold(
         appBar: FABWidget.appTopBar('login'.tr),
         // bloc consumer for listening to login state for navigation and validation based UI
@@ -44,8 +53,8 @@ class LoginScreen extends StatelessWidget {
                       child: TextField(
                         keyboardType: TextInputType.phone,
                         onChanged: (text) {
-                          context
-                              .read<LoginBloc>()
+                          BlocProvider.of<LoginBloc>(context, listen: false)
+                              // context.read<LoginBloc>() // context.read should not be used inside build, but in callbacks
                               .add(LoginPhoneNumberChanged(text));
                         },
                         style: FABStyles.appStyleInputText,
@@ -63,24 +72,24 @@ class LoginScreen extends StatelessWidget {
                                 : null,
                             errorMaxLines: 2),
                       ),
-                      // })
                     ),
                     Row(children: [
-                      Obx(
-                        // observing controller for remember me to display selected state of checkbox
-                        () => Checkbox(
+                      BlocBuilder<RememberMeCubit, RememberMeValue>(
+                          builder: (context, state) {
+                        return Checkbox(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(4)),
-                          value: (controller.rememberMeFlag.value == true),
+                          value: (state.userSelection),
                           onChanged: (bool? value) {
-                            controller.rememberMe(value);
+                            context.read<RememberMeCubit>().toggleSelection();
                           },
                           fillColor:
                               MaterialStateProperty.all(primaryLabelColor),
-                        ),
-                      ),
+                        );
+                      }),
                       GestureDetector(
-                        onTap: controller.toggleRememberMe,
+                        onTap: () =>
+                            context.read<RememberMeCubit>().toggleSelection(),
                         child: Text('remember_me'.tr),
                       ),
                       const Spacer(),
@@ -94,18 +103,13 @@ class LoginScreen extends StatelessWidget {
                   child: Align(
                     alignment: FractionalOffset.bottomCenter,
                     child: SizedBox(
-                        width: 116.w,
-                        height: 56.h,
-                        // observing controller for valid mobile number that will decide enable/disable state of next button
-                        child:
-                            // BlocBuilder<LoginBloc, LoginState>(
-                            //   builder: (context, state) {
-                            // return
-                            FABWidget.appButton('next'.tr,
-                                onPressed: nextStep(context, state)
-                                //       );
-                                // },
-                                )),
+                      width: 116.w,
+                      height: 56.h,
+                      child: FABWidget.appButton(
+                        'next'.tr,
+                        onPressed: nextStep(context, state),
+                      ),
+                    ),
                   ),
                 ),
               ]),
@@ -133,7 +137,10 @@ class LoginScreen extends StatelessWidget {
       case ValidationState.valid:
         return () {
           FocusManager.instance.primaryFocus?.unfocus();
-          context.read<LoginBloc>().add(const LoginSubmitted());
+          BlocProvider.of<LoginBloc>(context, listen: false)
+              .
+              // context.read<LoginBloc>().
+              add(const LoginSubmitted());
         };
     }
   }
